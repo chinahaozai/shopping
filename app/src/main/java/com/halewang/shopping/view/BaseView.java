@@ -7,9 +7,8 @@ package com.halewang.shopping.view;
 public interface BaseView {
     /**
      * 显示进度条
-     * @param msg   进度条加载内容
      */
-    void showLoading(String msg);
+    void showLoading();
     /**
      * 隐藏进度条
      */

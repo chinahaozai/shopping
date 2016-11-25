@@ -30,6 +30,12 @@ public abstract class BaseActivity<V extends BaseView, P extends Presenter<V>> e
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.detachView();

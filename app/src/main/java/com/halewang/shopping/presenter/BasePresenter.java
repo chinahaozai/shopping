@@ -37,4 +37,9 @@ public class BasePresenter<V extends BaseView> implements Presenter<V> {
     public V getMvpView() {
         return mView;
     }
+
+    @Override
+    public void onResume() {
+
+    }
 }
