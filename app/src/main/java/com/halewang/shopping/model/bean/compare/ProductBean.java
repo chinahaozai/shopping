@@ -1,4 +1,4 @@
-package com.halewang.shopping.model.bean;
+package com.halewang.shopping.model.bean.compare;
 
 /**
  * Created by halewang on 2016/11/21.

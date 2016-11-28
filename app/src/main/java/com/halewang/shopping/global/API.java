@@ -5,6 +5,16 @@ package com.halewang.shopping.global;
  */
 
 public class API {
-    public static final String BASE_URL = "http://japi.juhe.cn/manmanmai/";
-    public static final String APP_KEY = "eb7eca7e57448782016cecb7d8415631";    //开源不易，付费接口请勿滥用
+
+    /**
+     * 比价相关
+     */
+    public static final String BASE_COMPARE_URL = "http://japi.juhe.cn/manmanmai/";
+    public static final String APP_KEY = "eb7eca7e57448782016cecb7d8415631";
+
+    /**
+     * 妹子图片每日一推
+     */
+    public static final String Base_MEIZI_URL = "http://gank.io";
+
 }

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
-    android:background="#fff">
+    android:background="#fff"
+    android:id="@+id/ll_compare_item">
 
     <TextView
 
@@ -34,23 +35,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:text="品牌：史努比"
                 android:maxLines="1"/>
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:text="价格：999"
+                android:textColor="#f00"
                 android:maxLines="1"/>
             <TextView
                 android:id="@+id/tv_site"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:text="来源：京东商城"
                 android:layout_weight="1"
                 android:maxLines="1"/>
             <TextView
                 android:id="@+id/tv_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:text="评论数：1234条"
                 android:layout_weight="1"
                 android:maxLines="1"/>
         </LinearLayout>

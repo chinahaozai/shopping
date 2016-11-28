@@ -1,8 +1,7 @@
 package com.halewang.shopping.model.service;
 
-import com.halewang.shopping.model.bean.ProductBean;
+import com.halewang.shopping.model.bean.compare.ProductBean;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

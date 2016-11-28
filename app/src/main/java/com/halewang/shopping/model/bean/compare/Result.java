@@ -1,4 +1,4 @@
-package com.halewang.shopping.model.bean;
+package com.halewang.shopping.model.bean.compare;
 
 import java.util.List;
 

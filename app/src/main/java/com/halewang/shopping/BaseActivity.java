@@ -20,19 +20,14 @@ public abstract class BaseActivity<V extends BaseView, P extends Presenter<V>> e
         super.onCreate(savedInstanceState);
 
         presenter = initPresenter();
+        presenter.attachView((V)this);
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.attachView((V)this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        presenter.onResume();
+        presenter.onStart();
     }
 
     @Override

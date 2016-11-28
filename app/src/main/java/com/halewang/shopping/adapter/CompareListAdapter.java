@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.halewang.shopping.R;
-import com.halewang.shopping.model.bean.ProductDetail;
+import com.halewang.shopping.model.bean.compare.ProductDetail;
 
 import java.util.List;
 
@@ -81,7 +81,7 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
 
         holder.tvDescription.setText(mDatas.get(position).getSpname());
         holder.tvBrand.setText("品牌:" + mDatas.get(position).getBrandName());
-        holder.tvPrice.setText("价格:" + mDatas.get(position).getSpprice());
+        holder.tvPrice.setText("价格:" + mDatas.get(position).getSpprice()+"¥");
         holder.tvSite.setText("来源:" + mDatas.get(position).getSiteName());
         holder.tvComment.setText("评论:"+ mDatas.get(position).getCommentCount()+"条");
         Glide.with(mContext)

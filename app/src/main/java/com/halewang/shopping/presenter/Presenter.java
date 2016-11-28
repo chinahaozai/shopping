@@ -19,6 +19,6 @@ public interface Presenter<V extends BaseView> {
      */
     void detachView();
 
-    void onResume();
+    void onStart();
 
 }

@@ -12,7 +12,7 @@ public interface BaseView {
     /**
      * 隐藏进度条
      */
-    void hideLoading();
+    void hideLoading(boolean isFirstLoad);
     /**
      * 显示加载错误
      * @param err 错误内容

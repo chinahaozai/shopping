@@ -39,7 +39,7 @@ public class BasePresenter<V extends BaseView> implements Presenter<V> {
     }
 
     @Override
-    public void onResume() {
+    public void onStart() {
 
     }
 }
