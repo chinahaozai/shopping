@@ -39,6 +39,7 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
     private OnItemLongClickListener mItemLongClickListener;
     private List<ProductDetail> mDatas;
     private Context mContext;
+    private View mView;
 
     public CompareListAdapter(Context mContext, List<ProductDetail> mDatas){
         this.mDatas = mDatas;
@@ -53,7 +54,7 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+        mView = LayoutInflater.from(mContext).inflate(R.layout.item_compare,parent,false);
         return new MyHolder(LayoutInflater.from(mContext).inflate(R.layout.item_compare,parent,false));
     }
 
@@ -78,7 +79,12 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
                 }
             });
         }*/
-
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mItemClickListener.onItemClick(view, position);
+            }
+        });
         holder.tvDescription.setText(mDatas.get(position).getSpname());
         holder.tvBrand.setText("品牌:" + mDatas.get(position).getBrandName());
         holder.tvPrice.setText("价格:" + mDatas.get(position).getSpprice()+"¥");

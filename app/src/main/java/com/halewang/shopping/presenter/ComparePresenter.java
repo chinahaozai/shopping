@@ -49,6 +49,12 @@ public class ComparePresenter extends BasePresenter<CompareView> {
             if (bean.getReason().equals("success")) {
                 List<ProductDetail> list = bean.getResult().getSearchResultList();
                 CompareListAdapter mAdapter = new CompareListAdapter(mContext, list);
+                mAdapter.setOnItemClickListener(new CompareListAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Toast.makeText(mContext, "试试点击", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 getMvpView().getRecyclerView().setAdapter(mAdapter);
             } else {
                 Toast.makeText(mContext, "加载失败", Toast.LENGTH_SHORT).show();
