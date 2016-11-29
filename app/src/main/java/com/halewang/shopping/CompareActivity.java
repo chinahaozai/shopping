@@ -9,15 +9,25 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.halewang.shopping.adapter.decoration.DividerItemDecoration;
+import com.halewang.shopping.model.bean.meizi.MeiziData;
+import com.halewang.shopping.model.service.ApiManage;
 import com.halewang.shopping.presenter.ComparePresenter;
 import com.halewang.shopping.view.CompareView;
 
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> implements CompareView {
+
+    private static final String TAG = "CompareActivity";
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mRefreshLayout;
@@ -35,9 +45,10 @@ public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
 
-        setupToolbar();
+        setupToolbarLayout();
         initRefreshLayout();
         initRecyclerView();
+        presenter.onStart();
     }
 
     private void initRefreshLayout(){
@@ -53,15 +64,14 @@ public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> 
     }
 
     private void initRecyclerView(){
-         /*CompareListAdapter mAdapter = new CompareListAdapter(this, mDatas);
-        mRecyclerView.setAdapter(mAdapter);*/
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
     }
 
-    void setupToolbar() {
+    void setupToolbarLayout() {
         mImageView = (ImageView) findViewById(R.id.image_top);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("商品集合");

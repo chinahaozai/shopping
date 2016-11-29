@@ -5,6 +5,9 @@ import android.util.Log;
 import com.halewang.shopping.global.API;
 import com.halewang.shopping.model.bean.meizi.MeiziData;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Callback;
@@ -21,7 +24,6 @@ public class ApiManage {
     private static final String TAG = "ApiManage";
     private static CompareService compareService;
     private static MeiziService meiziService;
-
 
     public static CompareService getCompareService(){
         if(compareService == null){

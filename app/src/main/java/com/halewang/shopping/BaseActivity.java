@@ -38,4 +38,5 @@ public abstract class BaseActivity<V extends BaseView, P extends Presenter<V>> e
 
     // 实例化presenter
     public abstract P initPresenter();
+
 }

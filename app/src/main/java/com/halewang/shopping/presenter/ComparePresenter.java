@@ -1,11 +1,15 @@
 package com.halewang.shopping.presenter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.halewang.shopping.ProductDetailActivity;
+import com.halewang.shopping.R;
 import com.halewang.shopping.adapter.CompareListAdapter;
 import com.halewang.shopping.model.CompareModel;
 import com.halewang.shopping.model.bean.compare.ProductBean;
@@ -47,12 +51,18 @@ public class ComparePresenter extends BasePresenter<CompareView> {
         @Override
         public void onNext(ProductBean bean) {
             if (bean.getReason().equals("success")) {
-                List<ProductDetail> list = bean.getResult().getSearchResultList();
+                final List<ProductDetail> list = bean.getResult().getSearchResultList();
                 CompareListAdapter mAdapter = new CompareListAdapter(mContext, list);
                 mAdapter.setOnItemClickListener(new CompareListAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(mContext, "试试点击", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(mContext, "试试点击", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url", list.get(position).getSpurl());
+                        bundle.putString("brand", list.get(position).getBrandName());
+                        intent.putExtra("detail", bundle);
+                        mContext.startActivity(intent);
                     }
                 });
                 getMvpView().getRecyclerView().setAdapter(mAdapter);
@@ -70,12 +80,7 @@ public class ComparePresenter extends BasePresenter<CompareView> {
 
     @Override
     public void onStart() {
-        /*if(isAttachView()){
-            getMvpView().showLoading();
-            Log.d(TAG, "ComparePresenter: loading complete");
-        }else{
-            Log.d(TAG, "ComparePresenter: view not attached");
-        }*/
+
         initMeizi();
         getMvpView().getFloatingActionButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +89,8 @@ public class ComparePresenter extends BasePresenter<CompareView> {
             }
         });
     }
-    private void initMeizi(){
+
+    private void initMeizi() {
         ApiManage.getMeiziService().getMeizhiData(1)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -97,7 +103,7 @@ public class ComparePresenter extends BasePresenter<CompareView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e(TAG, "onError: "+e.toString());
+                        Log.e(TAG, "onError: " + e.toString());
                     }
 
                     @Override
@@ -105,18 +111,12 @@ public class ComparePresenter extends BasePresenter<CompareView> {
                         Glide.with(mContext)
                                 .load(data.getResults().get(0).getUrl())
                                 .centerCrop()
+                                //.placeholder(R.drawable.toolbar_bg)
+                                .crossFade()
                                 .into(getMvpView().getImageView());
                     }
                 });
-                /*.subscribe(new Action1<MeiziData>() {
-                    @Override
-                    public void call(MeiziData data) {
-                        Glide.with(mContext)
-                                .load(data.getResults().get(0).url)
-                                .centerCrop()
-                                .into(getMvpView().getImageView());
-                    }
-                });*/
+
     }
 
 }
