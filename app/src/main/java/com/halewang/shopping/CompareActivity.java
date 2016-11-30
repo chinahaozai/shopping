@@ -1,9 +1,11 @@
 package com.halewang.shopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import com.halewang.shopping.adapter.decoration.DividerItemDecoration;
 import com.halewang.shopping.model.bean.meizi.MeiziData;
 import com.halewang.shopping.model.service.ApiManage;
 import com.halewang.shopping.presenter.ComparePresenter;
+import com.halewang.shopping.utils.InternetUtil;
 import com.halewang.shopping.view.CompareView;
 
 import rx.Subscriber;
@@ -48,7 +51,15 @@ public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> 
         setupToolbarLayout();
         initRefreshLayout();
         initRecyclerView();
+        if(!Debug.IS_DEBUG) {
+            presenter.getCompareList(getKeyword());
+        }
         presenter.onStart();
+    }
+
+    private String getKeyword(){
+        Intent intent = getIntent();
+        return intent.getBundleExtra("search").getString("keyword");
     }
 
     private void initRefreshLayout(){
@@ -109,10 +120,14 @@ public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> 
                 mRefreshLayout.setRefreshing(false);
             }
         });
-        //mRecyclerView.scrollToPosition(0);
-        mRecyclerView.smoothScrollToPosition(0);
-        if(!isFirstLoad) {
-            Toast.makeText(this, "刷新完成", Toast.LENGTH_SHORT).show();
+        if(InternetUtil.isNetworkAvailable(this)) {
+            mRecyclerView.smoothScrollToPosition(0);
+            if (!isFirstLoad) {
+                Toast.makeText(this, "刷新完成", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Snackbar.make(mRefreshLayout, "网络连接失败，请检测手机网络连接", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
     }
 

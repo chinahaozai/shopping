@@ -61,25 +61,6 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
 
     @Override
     public void onBindViewHolder(MyHolder holder, final int position) {
-        /*holder.tv.setText(mDatas.get(position));
-        if(mItemClickListener != null){
-            holder.tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mItemClickListener.onItemClick(view, position);
-                }
-            });
-        }
-        if(mItemLongClickListener != null){
-            holder.tv.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    //mItemLongClickListener.OnItemLongClick(view, position);
-                    removeData(position);
-                    return false;
-                }
-            });
-        }*/
 
         holder.comopareItem.setOnClickListener(new View.OnClickListener() {
             @Override

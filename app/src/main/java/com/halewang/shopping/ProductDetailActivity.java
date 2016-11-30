@@ -24,23 +24,20 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
         implements ProductDetailView{
 
     private WebView mWebView;
-    private TextView mTitle;
     private ProgressBar mProgress;
     private MaterialRefreshLayout mMaterialRefreshLayout;
-    private String url;
     private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        url = getUrl();
         title = getBrand();
         setupToolbar();
 
         initView();
-        initWebView();
         initRefreshLayout();
+        presenter.onStart();
     }
 
     void setupToolbar() {
@@ -52,20 +49,14 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
         }
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //onBackPressed();
                 finish();
             }
         });
     }
 
-    private String getUrl(){
-        Intent intent = getIntent();
-        return intent.getBundleExtra("detail").getString("url");
-    }
     private String getBrand(){
         Intent intent = getIntent();
         return intent.getBundleExtra("detail").getString("brand");
@@ -75,28 +66,15 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
      * 初始化View
      */
     private void initView() {
-        //mTitle = (TextView) findViewById(R.id.title);
         mProgress = (ProgressBar) findViewById(R.id.Progress);
         mWebView = (WebView) findViewById(R.id.webview);
         mMaterialRefreshLayout = (MaterialRefreshLayout) findViewById(R.id.refresh);
     }
 
     /**
-     * 初始化WebView
-     */
-    private void initWebView() {
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setBlockNetworkImage(false);
-        mWebView.loadUrl(url);
-        mWebView.setWebViewClient(new MyWebviewClient());
-        mWebView.setWebChromeClient(new MyChromeClient());
-    }
-    /**
      * 初始化RefreshLayout刷新
-     * 不解释，相关的请看文章头部的MaterialRefreshLayout的连接
      */
     private void initRefreshLayout() {
-        //mMaterialRefreshLayout.setProgressColors(new int[]{R.color.colorProgress,R.color.colorProgress2});
         mMaterialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
@@ -107,60 +85,6 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
         });
     }
 
-    /**
-     * 重写MyWebviewClient方法
-     *
-     * shouldOverrideUrlLoading（） 拦截网页跳转，是之继续在WebView中进行跳转
-     * onPageStarted（） 开始加载的时候（显示进度条）
-     * onPageFinished（） 夹在结束的时候（隐藏进度条）
-     */
-    private class MyWebviewClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return false;
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            super.onPageStarted(view, url, favicon);
-            mProgress.setVisibility(View.VISIBLE);
-
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            mProgress.setVisibility(View.GONE);
-
-        }
-    }
-    /**
-     * 重写MyChromeClient方法
-     *
-     * onProgressChanged（） 设置动态进度条
-     * onReceivedTitle（） 设置WebView的头部标题
-     * onReceivedIcon（）  设置WebView的头部图标
-     */
-    private class MyChromeClient extends WebChromeClient {
-        @Override
-        public void onProgressChanged(WebView view, int newProgress) {
-            super.onProgressChanged(view, newProgress);
-            mProgress.setProgress(newProgress);
-
-        }
-
-        @Override
-        public void onReceivedTitle(WebView view, String title) {
-            super.onReceivedTitle(view, title);
-            //mTitle.setText(title);
-        }
-
-        @Override
-        public void onReceivedIcon(WebView view, Bitmap icon) {
-            super.onReceivedIcon(view, icon);
-        }
-    }
 
     /**
      * 实现WebView的回退栈
@@ -180,7 +104,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
 
     @Override
     public ProductDetailPresenter initPresenter() {
-        return new ProductDetailPresenter();
+        return new ProductDetailPresenter(this);
     }
 
     @Override
@@ -196,5 +120,21 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
     @Override
     public void showErr(String err) {
 
+    }
+
+    @Override
+    public WebView getWebView() {
+        return mWebView;
+    }
+
+    @Override
+    public ProgressBar getProgressBar() {
+        return mProgress;
+    }
+
+    @Override
+    public String getUrl() {
+        Intent intent = getIntent();
+        return intent.getBundleExtra("detail").getString("url");
     }
 }

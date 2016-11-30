@@ -12,7 +12,7 @@ public class Debug {
 
     public static ProductBean getLocalData(){
         Gson gson = new Gson();
-        ProductBean productBean = gson.fromJson(mLocalData, ProductBean.class);
+        ProductBean productBean = gson.fromJson(mLocalData2, ProductBean.class);
         return productBean;
     }
 
@@ -622,6 +622,617 @@ public class Debug {
             "\t\t\t\t\"ziying\":\"1\",\n" +
             "\t\t\t\t\"siteid\":\"1\",\n" +
             "\t\t\t\t\"id\":\"218367021\"\n" +
+            "\t\t\t}\n" +
+            "\t\t]\n" +
+            "\t}\n" +
+            "}";
+
+    private static String mLocalData2 = "{\n" +
+            "\t\"error_code\":0,\n" +
+            "\t\"reason\":\"success\",\n" +
+            "\t\"result\":{\n" +
+            "\t\t\"SearchItemsCount\":506,\n" +
+            "\t\t\"ClassList\":\"\",\n" +
+            "\t\t\"SearchResultList\":[\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族Pro6 全网通32G 香槟金 移动联通电信/4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0070079092-000000000146158971_1_200x200.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://product.suning.com/0070079092/146158971.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2199.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"苏宁易购\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"4234\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font>Pro6 全网通32G 香槟金 移动联通电信/4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"6\",\n" +
+            "\t\t\t\t\"id\":\"351476926\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【12期免息赠耳机】Meizu/魅族 PRO 6 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i1/1695308781/TB2j_E0chuI.eBjy0FdXXXgbVXa_!!1695308781.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=529707738581\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(魅族官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"13296\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【12期免息赠耳机】Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 3\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"563331023\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【12期免息赠耳机】Meizu/魅族 PRO 6 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i1/1695308781/TB2j_E0chuI.eBjy0FdXXXgbVXa_!!1695308781.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=529707738581\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(魅族官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"13293\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【12期免息赠耳机】Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 3\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"532666835\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 全网通公开版 金色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img12.360buyimg.com/n7/jfs/t2686/294/337465072/340581/8a260cb6/570e6701N2ae67ce2.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.jd.com/2660657.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"京东商城\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"6500\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 全网通公开版 金色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"1\",\n" +
+            "\t\t\t\t\"id\":\"354690188\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 全网通公开版 玫瑰金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img12.360buyimg.com/n8/jfs/t2773/104/2224818638/332656/52dd8c4f/575faad4Ne869e1f4.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.jd.com/3129330.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"京东商城\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"2600\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 全网通公开版 玫瑰金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"1\",\n" +
+            "\t\t\t\t\"id\":\"431649374\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 (Meizu) Pro6  32GB 金色 移动公开版 移动联通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img03.fn-mart.com/C/item/2016/0624/201606C240000099/_857337641_230x230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.feiniu.com/201606CM240000324\",\n" +
+            "\t\t\t\t\"spprice\":\"1949.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"飞牛网\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> (Meizu) Pro6  32GB 金色 移动公开版 移动联通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"161\",\n" +
+            "\t\t\t\t\"id\":\"439995303\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"Meizu/魅族 PRO 6 全网通4G 电信 32G 银白\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img11.hqbcdn.com/product/9f/29/9f29522b9ef125435ed81a78e06b7f57.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://www.okhqb.com/item/1000124307.html\",\n" +
+            "\t\t\t\t\"spprice\":\"1955.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"华强北\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"41\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通4G 电信 32G 银白\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"123\",\n" +
+            "\t\t\t\t\"id\":\"622426822\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 全网通 32GB 银色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img3x5.ddimg.cn/79/7/1291845535-1_b_2.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://product.dangdang.com/1291845535.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2029.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"当当\",\n" +
+            "\t\t\t\t\"commentUrl\":\"http://comm.dangdang.com/review/reviewlist.php?pid=1291845535#ddclick?act=sort_total_review_count_desc&pos=1291845535_26_1_m&cat=4004279&key=&qinfo=&pinfo=&minfo=4349_74_48&ninfo=&custid=&permid=20161130000327461191915653799243009&ref=&rcount=&type=&t=1480435857000&searchapi_version=test_ori\",\n" +
+            "\t\t\t\t\"commentCount\":\"13\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 全网通 32GB 银色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"3\",\n" +
+            "\t\t\t\t\"id\":\"419964840\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 金色 移动联通电信4G手机 全网通版 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://gfs.gomein.net.cn/T1B5YTBCKv1RCvBVdK_160.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.gome.com.cn/9134290551-1123230357.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"国美在线\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1006\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 金色 移动联通电信4G手机 全网通版 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"8\",\n" +
+            "\t\t\t\t\"id\":\"363665558\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族PRO 6\",\n" +
+            "\t\t\t\t\"sppic\":\"http://storeimg.meizu.com/product/1460439990-20010.png\",\n" +
+            "\t\t\t\t\"spurl\":\"http://detail.meizu.com/item/meizu_pro6.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"魅族官方商城\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font><font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font>\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"292\",\n" +
+            "\t\t\t\t\"id\":\"461878454\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 64GB 星空黑 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d9.yihaodianimg.com/N10/M06/4F/03/ChEi3FcN5FWAG3cgAAOoNotllQg54601_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228276\",\n" +
+            "\t\t\t\t\"spprice\":\"2599.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 64GB 星空黑 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"395487926\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 64GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d6.yihaodianimg.com/N09/M08/DF/61/ChEi11djS5eACzgvAAPbLmQVQIE49401_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61320236\",\n" +
+            "\t\t\t\t\"spprice\":\"2599.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 64GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"502579141\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族Pro6 全网通公开版 4+64GB 黑色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://image3.suning.cn/uimg/b2c/newcatentries/0000000000-000000000146465385_1_200x200.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://product.suning.com/0000000000/146465385.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2799.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"苏宁易购\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1032\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font>Pro6 全网通公开版 4+64GB 黑色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"6\",\n" +
+            "\t\t\t\t\"id\":\"446409235\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6S 64GB 全网通公开版 星空黑 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img11.360buyimg.com/n7/jfs/t3505/273/1059115597/202229/f3955e7b/581b0698Nd93ad3ef.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.jd.com/3888276.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"京东商城\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1193\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6S 64GB 全网通公开版 星空黑 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"1\",\n" +
+            "\t\t\t\t\"id\":\"597645553\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 64GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d6.yihaodianimg.com/N09/M08/DF/61/ChEi11djS5eACzgvAAPbLmQVQIE49401_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228271\",\n" +
+            "\t\t\t\t\"spprice\":\"2599.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 64GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"430735267\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族Pro6s全网通版 4+64GB 玫瑰金 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://gfs3.gomein.net.cn/T155JTB4L_1RCvBVdK_160.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.gome.com.cn/9134560673-1123501462.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"国美在线\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font>Pro6s全网通版 4+64GB 玫瑰金 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"8\",\n" +
+            "\t\t\t\t\"id\":\"620957124\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 64GB 香槟金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d9.yihaodianimg.com/N06/M07/16/8F/CgQIzlcN5QqATrbjAAPLkOkGSxA18401_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228266\",\n" +
+            "\t\t\t\t\"spprice\":\"2599.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 64GB 香槟金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"389628216\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【苏宁直发 12期免息】Meizu/魅族Pro6 全网通4G手机  移动4G/联通4G/电信4G                                 星空黑                         官方标配 64GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i3/2616970884/TB2gAyFnXXXXXb8XXXXXXXXXXXX_!!2616970884.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=530188945404&skuId=3176798323805\",\n" +
+            "\t\t\t\t\"spprice\":\"2799.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(苏宁易购官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"3648\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【苏宁直发 12期免息】Meizu/<font color=\\\"red\\\">魅族<\\/font>Pro6 全网通4G手机  移动4G/联通4G/电信4G                                 星空黑                         官方标配 64GB\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"486234718\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【12期免息赠耳机】Meizu/魅族 PRO 6 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i1/1695308781/TB2j_E0chuI.eBjy0FdXXXgbVXa_!!1695308781.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=529707738581\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(魅族官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"13288\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【12期免息赠耳机】Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 3\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"486235056\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【12期免息赠耳机】Meizu/魅族 PRO 6全网通电信版_pro6手机  移动4G/联通4G/电信4G                                 月光银                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i2/1695308781/TB2d3ELcmKI.eBjy1zcXXXIOpXa_!!1695308781.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=533823734168\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(魅族官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"284\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【12期免息赠耳机】Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font>全网通电信版_pro6手机  移动4G/联通4G/电信4G                                 月光银                         官方标配 3\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"483989444\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【12期免息赠耳机】Meizu/魅族 PRO 6 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i1/1695308781/TB2j_E0chuI.eBjy0FdXXXgbVXa_!!1695308781.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=529707738581\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(魅族官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"13288\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【12期免息赠耳机】Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 3\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"483989441\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【12期免息赠耳机】Meizu/魅族 PRO 6 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i1/1695308781/TB2j_E0chuI.eBjy0FdXXXgbVXa_!!1695308781.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=529707738581\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(魅族官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"13289\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【12期免息赠耳机】Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通公开版pro6手机  移动4G/联通4G/电信4G                                 香槟金                         官方标配 3\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"500134632\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族Pro6全网通公开版 4+64GB 玫瑰金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://image2.suning.cn/uimg/b2c/newcatentries/0000000000-000000000184166321_1_200x200.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://product.suning.com/0000000000/184166321.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"苏宁易购\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font>Pro6全网通公开版 4+64GB 玫瑰金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"6\",\n" +
+            "\t\t\t\t\"id\":\"622214327\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"Meizu/魅族 PRO 6 全网通4G 电信 32G 金色\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img11.hqbcdn.com/product/9f/29/9f29522b9ef125435ed81a78e06b7f57.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://www.okhqb.com/item/1000124306.html\",\n" +
+            "\t\t\t\t\"spprice\":\"1955.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"华强北\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"41\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通4G 电信 32G 金色\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"123\",\n" +
+            "\t\t\t\t\"id\":\"622426821\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"Meizu/魅族 PRO 6 全网通4G 电信 32G 纯黑\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img11.hqbcdn.com/product/9f/29/9f29522b9ef125435ed81a78e06b7f57.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://www.okhqb.com/item/1000124305.html\",\n" +
+            "\t\t\t\t\"spprice\":\"1988.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"华强北\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"41\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font> 全网通4G 电信 32G 纯黑\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"123\",\n" +
+            "\t\t\t\t\"id\":\"622426820\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"Meizu/魅族 PRO 6s 全网通 双卡双待 手机 4GB+64GB 玫瑰金\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img13.hqbcdn.com/product/f9/83/f983ce12b2101db57e91d832fcf35173.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://www.okhqb.com/item/1000124218.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2439.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"华强北\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font>s 全网通 双卡双待 手机 4GB+64GB 玫瑰金\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"123\",\n" +
+            "\t\t\t\t\"id\":\"610299847\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"Meizu/魅族 PRO 6s 全网通 双卡双待 手机 4GB+64GB 月光银\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img4.hqbcdn.com/product/9f/31/9f31651210fa15a07995a6d949cd092c.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://www.okhqb.com/item/1000124217.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2488.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"华强北\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"Meizu/<font color=\\\"red\\\">魅族<\\/font> <font color=\\\"red\\\">PRO<\\/font> <font color=\\\"red\\\">6<\\/font>s 全网通 双卡双待 手机 4GB+64GB 月光银\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"123\",\n" +
+            "\t\t\t\t\"id\":\"610299846\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 64GB 香槟金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d9.yihaodianimg.com/N06/M07/16/8F/CgQIzlcN5QqATrbjAAPLkOkGSxA18401_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61320235\",\n" +
+            "\t\t\t\t\"spprice\":\"2599.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 64GB 香槟金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"506716704\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族PRO6S全网通公开版 4+64GB 黑色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://image2.suning.cn/uimg/b2c/newcatentries/0000000000-000000000184166337_1_200x200.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://product.suning.com/0000000000/184166337.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"苏宁易购\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"28\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font>PRO6S全网通公开版 4+64GB 黑色 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"6\",\n" +
+            "\t\t\t\t\"id\":\"622700759\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6S 64GB 全网通公开版 玫瑰金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img12.360buyimg.com/n8/jfs/t3511/316/1204922005/225540/655cccf7/582044f6N17d5005c.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.jd.com/4067574.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"京东商城\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1193\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6S 64GB 全网通公开版 玫瑰金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"1\",\n" +
+            "\t\t\t\t\"id\":\"606317392\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 香槟金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d9.yihaodianimg.com/N10/M08/B6/8B/ChEi2ldPq1KAI-KeAANTUPQwiAk09301_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228243\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 香槟金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"351394464\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族Pro6s全网通版 4+64GB 香槟金 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://gfs2.gomein.net.cn/T1P5JTBXb_1RCvBVdK_160.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.gome.com.cn/9134560673-1123501463.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"国美在线\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"0\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font>Pro6s全网通版 4+64GB 香槟金 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"8\",\n" +
+            "\t\t\t\t\"id\":\"622439195\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 银白 移动联通电信4G手机 全网通版 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://gfs4.gomein.net.cn/T1lCKTBXdv1RCvBVdK_160.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.gome.com.cn/9134290551-1123230782.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2099.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"国美在线\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1005\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 银白 移动联通电信4G手机 全网通版 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"8\",\n" +
+            "\t\t\t\t\"id\":\"372688387\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 黑色 移动联通电信4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://gfs2.gomein.net.cn/T1q._TBjAT1RCvBVdK_160.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.gome.com.cn/9134290551-1123231375.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"国美在线\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1005\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 黑色 移动联通电信4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"8\",\n" +
+            "\t\t\t\t\"id\":\"394295165\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6S 64GB 全网通公开版 香槟金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"sppic\":\"http://img12.360buyimg.com/n8/jfs/t3709/246/1143355613/229733/35fe35a7/581f2e8cNafc11298.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.jd.com/3458059.html\",\n" +
+            "\t\t\t\t\"spprice\":\"2699.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"京东商城\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"1733\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6S 64GB 全网通公开版 香槟金 移动联通电信4G手机 双卡双待\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"1\",\n" +
+            "\t\t\t\t\"id\":\"610496102\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d7.yihaodianimg.com/N05/M0A/0C/BD/CgQI0ldjSfmAJ0CJAAPbLmQVQIE14601_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228250\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"http://item.yhd.com/item/61228250\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"430735317\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 星空黑 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d6.yihaodianimg.com/N05/M03/EC/C9/CgQI01dPl6aAGwJzAATi4VlocbU31701_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228256\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"http://item.yhd.com/item/61228256\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 星空黑 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"389628217\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d7.yihaodianimg.com/N05/M0A/0C/BD/CgQI0ldjSfmAJ0CJAAPbLmQVQIE14601_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61320232\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"http://item.yhd.com/item/61320232\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 玫瑰金 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"502530375\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"【苏宁直发 12期免息】Meizu/魅族Pro6 全网通4G手机  移动4G+/联通4G+/电信4G+                                 香槟金                         官方标配 32GB\",\n" +
+            "\t\t\t\t\"sppic\":\"https://img.alicdn.com/imgextra/i3/2616970884/TB2gAyFnXXXXXb8XXXXXXXXXXXX_!!2616970884.jpg_430x430q90.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.tmall.com/item.htm?id=530188945404&skuId=3157112211467\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"天猫旗舰店(苏宁易购官方旗舰店)\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"3648\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"【苏宁直发 12期免息】Meizu/<font color=\\\"red\\\">魅族<\\/font>Pro6 全网通4G手机  移动4G+/联通4G+/电信4G+                                 香槟金                         官方标配 32G\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"278\",\n" +
+            "\t\t\t\t\"id\":\"486234716\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\t\t\"spname\":\"魅族 PRO6 32GB 月光银 全网通4G手机\",\n" +
+            "\t\t\t\t\"sppic\":\"http://d8.yihaodianimg.com/N09/M04/C0/69/ChEi11dPmcWARE1AAARJmkIe1KI30601_230*230.jpg\",\n" +
+            "\t\t\t\t\"spurl\":\"http://item.yhd.com/item/61228238\",\n" +
+            "\t\t\t\t\"spprice\":\"2299.00\",\n" +
+            "\t\t\t\t\"className\":\"手机\",\n" +
+            "\t\t\t\t\"brandName\":\"魅族\",\n" +
+            "\t\t\t\t\"siteName\":\"1号店\",\n" +
+            "\t\t\t\t\"commentUrl\":\"\",\n" +
+            "\t\t\t\t\"commentCount\":\"541\",\n" +
+            "\t\t\t\t\"TitleHighLighter\":\"<font color=\\\"red\\\">魅族<\\/font> PRO6 32GB 月光银 全网通4G手机\",\n" +
+            "\t\t\t\t\"ziying\":\"1\",\n" +
+            "\t\t\t\t\"siteid\":\"13\",\n" +
+            "\t\t\t\t\"id\":\"383011206\"\n" +
             "\t\t\t}\n" +
             "\t\t]\n" +
             "\t}\n" +

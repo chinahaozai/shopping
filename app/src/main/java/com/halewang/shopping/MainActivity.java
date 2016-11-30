@@ -10,15 +10,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.halewang.shopping.model.bean.seckill.SeckillBean;
 import com.search.material.library.MaterialSearchView;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActivity";
 
     private MaterialSearchView mSearchView;
     private NavigationView mNavigationView;
@@ -50,6 +65,42 @@ public class MainActivity extends AppCompatActivity
         mNavigationView.setNavigationItemSelectedListener(this);
 
         initSearchView();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                testMiaosha();
+
+            }
+        }).start();
+    }
+
+    private void testMiaosha(){
+        OkHttpClient mOkHttpClient=new OkHttpClient();
+        RequestBody formBody = new FormBody.Builder()
+                .add("size", "10")
+                .build();
+        Request request = new Request.Builder()
+                .url("http://api.juanpi.com/open/jiukuaiyou")
+                .post(formBody)
+                .build();
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                String str = response.body().string();
+                String jsonData = str.substring(12,str.length() - 2);
+                Gson gson = new Gson();
+                SeckillBean bean = gson.fromJson(jsonData, SeckillBean.class);
+                Log.i(TAG, jsonData);
+                Log.d(TAG, "解析出来的数据 " + bean.getGoodslist().get(0).toString());
+
+            }
+        });
     }
 
     public void initSearchView() {
@@ -58,13 +109,13 @@ public class MainActivity extends AppCompatActivity
         mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                /*Bundle bundle = new Bundle();
-                bundle.putString("search", query);
+                Bundle bundle = new Bundle();
+                bundle.putString("keyword", query);
                 Intent intent = new Intent();
                 intent.putExtra("search", bundle);
-                intent.setClass(MainActivity.this, SearchActivity.class);
-                startActivity(intent);*/
-                Toast.makeText(MainActivity.this,"搜索"+ query,Toast.LENGTH_SHORT).show();
+                intent.setClass(MainActivity.this, CompareActivity.class);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this,"搜索"+ query,Toast.LENGTH_SHORT).show();
                 return false;
             }
 
