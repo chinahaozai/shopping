@@ -8,17 +8,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.halewang.shopping.model.bean.seckill.SeckillBean;
+import com.halewang.shopping.presenter.MainPresenter;
+import com.halewang.shopping.view.MainView;
 import com.search.material.library.MaterialSearchView;
+import com.youth.banner.Banner;
 
 import java.io.IOException;
 
@@ -30,41 +31,28 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity<MainView,MainPresenter>
+        implements MainView,NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
 
     private MaterialSearchView mSearchView;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawer;
+    private Banner mBanner;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        mNavigationView.setNavigationItemSelectedListener(this);
-
+        initView();
+        initToolbar();
+        initMenu();
         initSearchView();
+
+        presenter.onStart();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -73,6 +61,50 @@ public class MainActivity extends AppCompatActivity
             }
         }).start();
     }
+
+    private void initView(){
+        mBanner = (Banner) findViewById(R.id.banner);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    }
+
+    private void initToolbar(){
+        setSupportActionBar(mToolbar);
+    }
+
+    private void initMenu(){
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initSearchView() {
+        mSearchView = (MaterialSearchView) findViewById(R.id.search_view);
+        mSearchView.setHint("输入商品信息");
+        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Bundle bundle = new Bundle();
+                bundle.putString("keyword", query);
+                Intent intent = new Intent();
+                intent.putExtra("search", bundle);
+                intent.setClass(MainActivity.this, CompareActivity.class);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+
 
     private void testMiaosha(){
         OkHttpClient mOkHttpClient=new OkHttpClient();
@@ -103,28 +135,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    public void initSearchView() {
-        mSearchView = (MaterialSearchView) findViewById(R.id.search_view);
-        mSearchView.setHint("输入商品信息");
-        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Bundle bundle = new Bundle();
-                bundle.putString("keyword", query);
-                Intent intent = new Intent();
-                intent.putExtra("search", bundle);
-                intent.setClass(MainActivity.this, CompareActivity.class);
-                startActivity(intent);
-                //Toast.makeText(MainActivity.this,"搜索"+ query,Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-    }
 
     @Override
     protected void onResume() {
@@ -175,5 +185,30 @@ public class MainActivity extends AppCompatActivity
 
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public Banner getBanner() {
+        return mBanner;
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isFirstLoad) {
+
+    }
+
+    @Override
+    public void showErr(String err) {
+
+    }
+
+    @Override
+    public MainPresenter initPresenter() {
+        return new MainPresenter(this);
     }
 }

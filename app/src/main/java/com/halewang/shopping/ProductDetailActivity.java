@@ -7,13 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -55,6 +58,14 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
                 finish();
             }
         });
+
+        /*Button btn = (Button) findViewById(R.id.btn_share);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ProductDetailActivity.this,"分享",Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 
     private String getBrand(){
@@ -136,5 +147,11 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
     public String getUrl() {
         Intent intent = getIntent();
         return intent.getBundleExtra("detail").getString("url");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.deal_share, menu);
+        return true;
     }
 }

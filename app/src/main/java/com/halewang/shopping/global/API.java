@@ -17,4 +17,9 @@ public class API {
      */
     public static final String Base_MEIZI_URL = "http://gank.io";
 
+    /**
+     * 卷皮每日推荐
+     */
+    public static final String JUANPI_URL = "http://api.juanpi.com/open/jiukuaiyou";
+
 }

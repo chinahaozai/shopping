@@ -27,7 +27,7 @@ public abstract class BaseActivity<V extends BaseView, P extends Presenter<V>> e
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.onStart();
+        //presenter.onStart();
     }
 
     @Override
