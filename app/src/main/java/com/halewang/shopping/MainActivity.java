@@ -2,9 +2,7 @@ package com.halewang.shopping;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.gson.Gson;
 import com.halewang.shopping.model.bean.seckill.SeckillBean;
@@ -23,6 +20,8 @@ import com.youth.banner.Banner;
 
 import java.io.IOException;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -31,8 +30,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MainActivity extends BaseActivity<MainView,MainPresenter>
-        implements MainView,NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity<MainView, MainPresenter>
+        implements MainView, NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
 
@@ -47,6 +46,7 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ShareSDK.initSDK(this);
         initView();
         initToolbar();
         initMenu();
@@ -62,17 +62,17 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
         }).start();
     }
 
-    private void initView(){
+    private void initView() {
         mBanner = (Banner) findViewById(R.id.banner);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
         setSupportActionBar(mToolbar);
     }
 
-    private void initMenu(){
+    private void initMenu() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.setDrawerListener(toggle);
@@ -105,9 +105,8 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
     }
 
 
-
-    private void testMiaosha(){
-        OkHttpClient mOkHttpClient=new OkHttpClient();
+    private void testMiaosha() {
+        OkHttpClient mOkHttpClient = new OkHttpClient();
         RequestBody formBody = new FormBody.Builder()
                 .add("size", "10")
                 .build();
@@ -125,7 +124,7 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
             @Override
             public void onResponse(Response response) throws IOException {
                 String str = response.body().string();
-                String jsonData = str.substring(12,str.length() - 2);
+                String jsonData = str.substring(12, str.length() - 2);
                 Gson gson = new Gson();
                 SeckillBean bean = gson.fromJson(jsonData, SeckillBean.class);
                 Log.i(TAG, jsonData);
@@ -149,7 +148,7 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
             drawer.closeDrawer(GravityCompat.START);
         } else if (mSearchView.isSearchOpen()) {
             mSearchView.closeSearch();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -176,11 +175,12 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            showShareView();
 
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_search) {
-            startActivity(new Intent(MainActivity.this,CompareActivity.class));
+            startActivity(new Intent(MainActivity.this, CompareActivity.class));
         }
 
         mDrawer.closeDrawer(GravityCompat.START);
@@ -210,5 +210,31 @@ public class MainActivity extends BaseActivity<MainView,MainPresenter>
     @Override
     public MainPresenter initPresenter() {
         return new MainPresenter(this);
+    }
+
+    private void showShareView() {
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+        oks.setTitle("比一比");
+        // titleUrl是标题的网络链接，QQ和QQ空间等使用
+        oks.setTitleUrl("http://www.baidu.com");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("这个应用非常方便，终于不用挨个网站逛了，快来下载吧");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://www.baidu.com");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("这个应用非常方便，终于不用挨个网站逛了，快来下载吧");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://www.baidu.com");
+
+        // 启动分享GUI
+        oks.show(this);
     }
 }
