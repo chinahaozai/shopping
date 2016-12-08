@@ -3,23 +3,28 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="每日秒杀"/>
+            android:id="@+id/nav_seckill"
+            android:icon="@drawable/menu_seckill"
+            android:title="今日秒杀"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_bargain"
+            android:icon="@drawable/menu_bargain"
             android:title="特价商品"/>
         <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_action_action_search"
+            android:id="@+id/nav_compare"
+            android:icon="@drawable/menu_compare"
             android:title="比一比"/>
+
 
 
     </group>
 
     <item android:title="其他">
         <menu>
+            <item
+                android:id="@+id/nav_joy"
+                android:icon="@drawable/menu_joy"
+                android:title="每日趣图"/>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
@@ -29,8 +34,8 @@
                 android:icon="@drawable/ic_menu_manage"
                 android:title="设置"/>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:id="@+id/nav_quit"
+                android:icon="@drawable/menu_quit"
                 android:title="退出"/>
         </menu>
     </item>

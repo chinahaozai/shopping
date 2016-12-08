@@ -24,6 +24,7 @@ public class ApiManage {
     private static final String TAG = "ApiManage";
     private static CompareService compareService;
     private static MeiziService meiziService;
+    private static JoyService joyService;
 
     public static CompareService getCompareService(){
         if(compareService == null){
@@ -39,12 +40,23 @@ public class ApiManage {
         return meiziService;
     }
 
+    public static JoyService getJoyService(){
+        if(joyService == null){
+            createJoyService();
+        }
+        return joyService;
+    }
+
     private static void createMeiziService(){
         meiziService = createRetrofit(API.Base_MEIZI_URL).create(MeiziService.class);
     }
 
     private static void createCompareService(){
         compareService = createRetrofit(API.BASE_COMPARE_URL).create(CompareService.class);
+    }
+
+    private static void createJoyService(){
+        joyService = createRetrofit(API.BASE_JOY_URL).create(JoyService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl){

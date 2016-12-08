@@ -138,7 +138,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     @Override
     protected void onResume() {
         super.onResume();
-        mNavigationView.setCheckedItem(R.id.nav_camera);
+        mNavigationView.setCheckedItem(R.id.nav_seckill);
     }
 
     @Override
@@ -168,19 +168,22 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_seckill) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_bargain) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_compare) {
+            startActivity(new Intent(MainActivity.this, CompareActivity.class));
+        }else if (id == R.id.nav_joy) {
+            startActivity(new Intent(MainActivity.this, JoyActivity.class));
 
         } else if (id == R.id.nav_share) {
             showShareView();
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_search) {
-            startActivity(new Intent(MainActivity.this, CompareActivity.class));
+        } else if (id == R.id.nav_quit) {
+
         }
 
         mDrawer.closeDrawer(GravityCompat.START);

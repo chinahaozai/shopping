@@ -22,4 +22,12 @@ public class API {
      */
     public static final String JUANPI_URL = "http://api.juanpi.com/open/jiukuaiyou";
 
+    /**
+     * 每日趣图
+     */
+
+    public static final String BASE_JOY_URL = "http://japi.juhe.cn/joke/img/";
+    public static final String JOY_KEY = "9aaf9336fc1c734b8db4af1948ca0c51";
+
+
 }
