@@ -1,8 +1,7 @@
-package com.halewang.shopping.model;
+package com.halewang.shopping.model.bean.compare;
 
 import com.halewang.shopping.Debug;
 import com.halewang.shopping.global.API;
-import com.halewang.shopping.model.bean.compare.ProductBean;
 import com.halewang.shopping.model.service.ApiManage;
 
 import rx.Observable;
@@ -32,7 +31,7 @@ public class CompareModel {
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(subscriber);
         } else {
-            ApiManage.getCompareService().getCompareList(keyword, pageNum, itemCount, API.APP_KEY)
+            ApiManage.getCompareService().getCompareList(keyword, pageNum, itemCount, API.COMPARE_KEY)
                     .subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

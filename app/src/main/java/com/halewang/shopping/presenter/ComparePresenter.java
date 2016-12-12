@@ -11,9 +11,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.halewang.shopping.Debug;
 import com.halewang.shopping.ProductDetailActivity;
-import com.halewang.shopping.R;
 import com.halewang.shopping.adapter.CompareListAdapter;
-import com.halewang.shopping.model.CompareModel;
+import com.halewang.shopping.model.bean.compare.CompareModel;
 import com.halewang.shopping.model.bean.compare.ProductBean;
 import com.halewang.shopping.model.bean.compare.ProductDetail;
 import com.halewang.shopping.model.bean.meizi.MeiziData;
@@ -25,7 +24,6 @@ import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -48,7 +46,7 @@ public class ComparePresenter extends BasePresenter<CompareView> {
         @Override
         public void onError(Throwable e) {
             Toast.makeText(mContext, "加载失败", Toast.LENGTH_SHORT).show();
-
+            getMvpView().showErr(e.toString());
         }
 
         @Override

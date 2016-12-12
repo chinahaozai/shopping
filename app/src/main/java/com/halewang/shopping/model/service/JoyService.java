@@ -1,6 +1,5 @@
 package com.halewang.shopping.model.service;
 
-import com.halewang.shopping.model.bean.compare.ProductBean;
 import com.halewang.shopping.model.bean.joy.JoyBean;
 
 import retrofit2.http.GET;
@@ -13,6 +12,6 @@ import rx.Observable;
 
 public interface JoyService {
     @GET("text.from")
-    Observable<JoyBean> getJoy(@Query("page") int pageNum, @Query("pagesize") int pageSize,
-                               @Query("key") String key);
+    Observable<JoyBean> getJoyList(@Query("page") int pageNum, @Query("pagesize") int pageSize,
+                                   @Query("key") String key);
 }

@@ -1,18 +1,10 @@
 package com.halewang.shopping.model.service;
 
-import android.util.Log;
-
 import com.halewang.shopping.global.API;
-import com.halewang.shopping.model.bean.meizi.MeiziData;
 
-import java.io.IOException;
-
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.RxJavaCallAdapterFactory;
 
@@ -25,6 +17,7 @@ public class ApiManage {
     private static CompareService compareService;
     private static MeiziService meiziService;
     private static JoyService joyService;
+    private static RandJoyService randJoyService;
 
     public static CompareService getCompareService(){
         if(compareService == null){
@@ -47,16 +40,27 @@ public class ApiManage {
         return joyService;
     }
 
+    public static RandJoyService getRandJoyService(){
+        if(randJoyService == null){
+            createRandJoyService();
+        }
+        return randJoyService;
+    }
+
     private static void createMeiziService(){
         meiziService = createRetrofit(API.Base_MEIZI_URL).create(MeiziService.class);
     }
 
     private static void createCompareService(){
-        compareService = createRetrofit(API.BASE_COMPARE_URL).create(CompareService.class);
+        compareService = createRetrofit(API.COMPARE_URL).create(CompareService.class);
     }
 
     private static void createJoyService(){
-        joyService = createRetrofit(API.BASE_JOY_URL).create(JoyService.class);
+        joyService = createRetrofit(API.DAILY_JOY_URL).create(JoyService.class);
+    }
+
+    private static void createRandJoyService(){
+        randJoyService = createRetrofit(API.RAND_JOY_URL).create(RandJoyService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl){

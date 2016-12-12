@@ -3,36 +3,46 @@ package com.halewang.shopping;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.halewang.shopping.presenter.JoyPresenter;
+import com.halewang.shopping.view.JoyView;
 
-public class JoyActivity extends AppCompatActivity {
+public class JoyActivity extends BaseActivity<JoyView,JoyPresenter> implements JoyView{
 
     private static final String TAG = "JoyActivity";
     //private String testUrl = "http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201611/30/02AD3BD909D49E054C54684626CB8D10.gif";
-    private String testUrl = "http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201611/30/561AC4817ACD58A33C175DF121176A03.jpg";
+    private String testUrl = "http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201612/10/8B8E6F95AB757873CF1FC28B33BB43F4.png";
+
+    private RecyclerView mRecyclerView;
+    private RelativeLayout rlLoadMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joy);
 
-        final ImageView imageView = (ImageView) findViewById(R.id.iv_test);
-        /*Glide.with(this)
-                .load("http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201612/06/C01B0DEDA28B9FE80E09639D540505E9.gif")
-                .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                //.asGif()
-                //.load("http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201612/05/2DCA69EDA643DF94DC8C0BE707DC3D31.jpg")
-                .into(imageView);*/
+        initView();
+        initToolBar();
+        initRecyclerView();
+
+        presenter.onStart();
+
+        /*final ImageView imageView = (ImageView) findViewById(R.id.iv_test);
 
         Glide.with(this).load(testUrl)
                 .asBitmap()
@@ -54,10 +64,25 @@ public class JoyActivity extends AppCompatActivity {
                                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                                 .into(imageView);
                     }
-                });
+                });*/
 
 
     }
+
+    private void initView(){
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        rlLoadMore = (RelativeLayout) findViewById(R.id.rl_load_more);
+    }
+
+    private void initToolBar(){
+
+    }
+
+    private void initRecyclerView(){
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
 
     private float getScreenWidth() {
 
@@ -70,5 +95,41 @@ public class JoyActivity extends AppCompatActivity {
         float screenWidth = (int) (dm.widthPixels);      // 屏幕宽（px，如：480px）
         Log.d(TAG, "screenWidth: " + screenWidth);
         return screenWidth;
+    }
+
+    @Override
+    public JoyPresenter initPresenter() {
+        return new JoyPresenter(this);
+    }
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isFirstLoad) {
+        Toast.makeText(this,"加载完成",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErr(String err) {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        rlLoadMore.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onLoadMoreFinish() {
+        //Toast.makeText(this,"加载完成",Toast.LENGTH_SHORT).show();
+        rlLoadMore.setVisibility(View.GONE);
     }
 }

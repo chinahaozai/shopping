@@ -56,13 +56,13 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = LayoutInflater.from(mContext).inflate(R.layout.item_compare,parent,false);
-        return new MyHolder(LayoutInflater.from(mContext).inflate(R.layout.item_compare,parent,false));
+        return new MyHolder(mView);
     }
 
     @Override
     public void onBindViewHolder(MyHolder holder, final int position) {
 
-        holder.comopareItem.setOnClickListener(new View.OnClickListener() {
+        holder.compareItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mItemClickListener.onItemClick(view, position);
@@ -93,7 +93,7 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
         TextView tvSite;
         TextView tvComment;
         ImageView imageView;
-        CardView comopareItem;
+        CardView compareItem;
         public MyHolder(View itemView) {
             super(itemView);
 
@@ -103,7 +103,7 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
             tvSite = (TextView) itemView.findViewById(R.id.tv_site);
             tvComment = (TextView) itemView.findViewById(R.id.tv_comment);
             imageView = (ImageView) itemView.findViewById(R.id.image);
-            comopareItem = (CardView) itemView.findViewById(R.id.compare_item);
+            compareItem = (CardView) itemView.findViewById(R.id.compare_item);
         }
     }
 }

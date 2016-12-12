@@ -8,7 +8,7 @@ public class Joy {
     private String content;
     private String hashId;
     private String unixtime;
-    private String updatetime;
+    //private String updatetime;
     private String url;
 
     public String getContent() {
@@ -35,13 +35,13 @@ public class Joy {
         this.unixtime = unixtime;
     }
 
-    public String getUpdatetime() {
+    /*public String getUpdatetime() {
         return updatetime;
-    }
+    }*/
 
-    public void setUpdatetime(String updatetime) {
+    /*public void setUpdatetime(String updatetime) {
         this.updatetime = updatetime;
-    }
+    }*/
 
     public String getUrl() {
         return url;
@@ -57,7 +57,6 @@ public class Joy {
                 "content='" + content + '\'' +
                 ", hashId='" + hashId + '\'' +
                 ", unixtime='" + unixtime + '\'' +
-                ", updatetime='" + updatetime + '\'' +
                 ", url='" + url + '\'' +
                 '}';
     }
