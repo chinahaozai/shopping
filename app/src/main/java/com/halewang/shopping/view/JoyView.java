@@ -1,5 +1,6 @@
 package com.halewang.shopping.view;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
 /**
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 public interface JoyView extends BaseView {
 
     RecyclerView getRecyclerView();
+    SwipeRefreshLayout getSwipeRefreshLayout();
 
     void onLoadMore();
     void onLoadMoreFinish();

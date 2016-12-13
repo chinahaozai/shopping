@@ -62,6 +62,17 @@ public class JoyListAdapter extends RecyclerView.Adapter<JoyListAdapter.MyHolder
         notifyDataSetChanged();
     }
 
+    public void addAll(List<Joy> moreData){
+        mDatas.addAll(moreData);
+        notifyDataSetChanged();
+    }
+
+    public void refreshData(List<Joy> moreData){
+        mDatas.clear();
+        mDatas.addAll(moreData);
+        notifyDataSetChanged();
+    }
+
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = LayoutInflater.from(mContext).inflate(R.layout.item_joy,parent,false);
@@ -72,7 +83,8 @@ public class JoyListAdapter extends RecyclerView.Adapter<JoyListAdapter.MyHolder
     public void onBindViewHolder(final MyHolder holder, final int position) {
 
         holder.tvContent.setText(mDatas.get(position).getContent());
-        Glide.with(mContext).load(mDatas.get(position).getUrl())
+        Glide.with(mContext)
+                .load(mDatas.get(position).getUrl())
                 .asBitmap()
                 .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
                     @Override
@@ -87,7 +99,10 @@ public class JoyListAdapter extends RecyclerView.Adapter<JoyListAdapter.MyHolder
                         Glide.with(mContext)
                                 .load(mDatas.get(position).getUrl())
                                 .fitCenter()
+                                //.placeholder(R.drawable.splash)
+                                //.crossFade()
                                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                                .skipMemoryCache(true)  //跳过内存缓存，设置此项可减少RecyclerView加载时复用上一个位置的条目
                                 .into(holder.imageView);
                     }
                 });
@@ -100,8 +115,8 @@ public class JoyListAdapter extends RecyclerView.Adapter<JoyListAdapter.MyHolder
         JoyActivity mActivity = (JoyActivity)mContext;
         mActivity.getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        float density = dm.density;      // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）
-        float screenWidth = (int) (dm.widthPixels);      // 屏幕宽（px，如：480px）
+        //float density = dm.density;      // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）
+        float screenWidth =dm.widthPixels;      // 屏幕宽（px，如：480px）
         return screenWidth;
     }
 

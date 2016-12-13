@@ -2,10 +2,13 @@ package com.halewang.shopping;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -20,16 +23,19 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.halewang.shopping.presenter.JoyPresenter;
+import com.halewang.shopping.utils.InternetUtil;
 import com.halewang.shopping.view.JoyView;
 
-public class JoyActivity extends BaseActivity<JoyView,JoyPresenter> implements JoyView{
+public class JoyActivity extends BaseActivity<JoyView, JoyPresenter> implements JoyView {
 
     private static final String TAG = "JoyActivity";
     //private String testUrl = "http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201611/30/02AD3BD909D49E054C54684626CB8D10.gif";
     private String testUrl = "http://juheimg.oss-cn-hangzhou.aliyuncs.com/joke/201612/10/8B8E6F95AB757873CF1FC28B33BB43F4.png";
 
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private RelativeLayout rlLoadMore;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,43 +48,29 @@ public class JoyActivity extends BaseActivity<JoyView,JoyPresenter> implements J
 
         presenter.onStart();
 
-        /*final ImageView imageView = (ImageView) findViewById(R.id.iv_test);
-
-        Glide.with(this).load(testUrl)
-                .asBitmap()
-                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        int imageWidth = resource.getWidth();
-                        int imageHeight = resource.getHeight();
-                        Log.d(TAG, "imageWidth: "+ imageWidth);
-                        Log.d(TAG, "imageHeight: "+ imageHeight);
-                        int height = (int) getScreenWidth() * imageHeight / imageWidth;
-                        ViewGroup.LayoutParams para = imageView.getLayoutParams();
-                        para.height = height;
-                        Log.d(TAG, "height: " + height);
-                        imageView.setLayoutParams(para);
-                        Glide.with(JoyActivity.this)
-                                .load(testUrl)
-                                .fitCenter()
-                                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                                .into(imageView);
-                    }
-                });*/
-
-
     }
 
-    private void initView(){
+    private void initView() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
         rlLoadMore = (RelativeLayout) findViewById(R.id.rl_load_more);
     }
 
-    private void initToolBar(){
-
+    private void initToolBar() {
+        mToolbar.setTitle("每日趣图");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -108,13 +100,24 @@ public class JoyActivity extends BaseActivity<JoyView,JoyPresenter> implements J
     }
 
     @Override
+    public SwipeRefreshLayout getSwipeRefreshLayout() {
+        return mSwipeRefreshLayout;
+    }
+
+    @Override
     public void showLoading() {
 
     }
 
     @Override
     public void hideLoading(boolean isFirstLoad) {
-        Toast.makeText(this,"加载完成",Toast.LENGTH_SHORT).show();
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
     }
 
     @Override
