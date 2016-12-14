@@ -16,6 +16,10 @@
     <style name="LauncherTheme" parent="AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
+    <style name="JoyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorRedPrimary</item>
+        <item name="colorPrimaryDark">@color/colorRedPrimaryDark</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 

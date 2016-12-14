@@ -22,6 +22,7 @@ import java.io.IOException;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -48,19 +49,26 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         setContentView(R.layout.activity_main);
 
         ShareSDK.initSDK(this);
+        SMSSDK.initSDK(this, "19e6883036546", "af7b43a7fee9b57942003b40c665acdd");
         initView();
         initToolbar();
         initMenu();
         initSearchView();
 
         presenter.onStart();
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 testMiaosha();
 
             }
-        }).start();
+        }).start();*/
+
+        testSMS();
+    }
+
+    private void testSMS(){
+
     }
 
     private void initView() {
@@ -106,7 +114,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     }
 
 
-    private void testMiaosha() {
+    /*private void testMiaosha() {
         OkHttpClient mOkHttpClient = new OkHttpClient();
         RequestBody formBody = new FormBody.Builder()
                 .add("size", "10")
@@ -133,7 +141,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
             }
         });
-    }
+    }*/
 
 
     @Override
