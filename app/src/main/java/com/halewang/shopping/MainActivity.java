@@ -19,10 +19,13 @@ import com.search.material.library.MaterialSearchView;
 import com.youth.banner.Banner;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -64,12 +67,10 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
             }
         }).start();*/
 
-        testSMS();
+        register();
     }
 
-    private void testSMS(){
 
-    }
 
     private void initView() {
         mBanner = (Banner) findViewById(R.id.banner);
@@ -183,7 +184,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         } else if (id == R.id.nav_compare) {
             startActivity(new Intent(MainActivity.this, CompareActivity.class));
-        }else if (id == R.id.nav_joy) {
+        } else if (id == R.id.nav_joy) {
             startActivity(new Intent(MainActivity.this, JoyActivity.class));
 
         } else if (id == R.id.nav_share) {
@@ -248,5 +249,31 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         // 启动分享GUI
         oks.show(this);
+    }
+
+    private void register() {
+        //打开注册页面
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.setRegisterCallback(new EventHandler() {
+            public void afterEvent(int event, int result, Object data) {
+                Log.d(TAG, "register: " + "到了回调事件里");
+
+                // 解析注册结果
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    @SuppressWarnings("unchecked")
+                    HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
+                    String country = (String) phoneMap.get("country");
+                    String phone = (String) phoneMap.get("phone");
+                    Log.d(TAG, "country: " + country);
+                    Log.d(TAG, "phone: " + phone);
+                    // 提交用户信息（此方法可以不调用）
+                    //registerUser(country, phone);
+                }else{
+                    Log.d(TAG, "result: " + "失败");
+                }
+            }
+        });
+        registerPage.show(MainActivity.this);
+        Log.d(TAG, "register: " + "还是可以打日志");
     }
 }
