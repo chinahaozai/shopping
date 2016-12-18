@@ -18,6 +18,7 @@ public class ApiManage {
     private static MeiziService meiziService;
     private static JoyService joyService;
     private static RandJoyService randJoyService;
+    private static BannerService bannerService;
 
     public static CompareService getCompareService(){
         if(compareService == null){
@@ -47,6 +48,13 @@ public class ApiManage {
         return randJoyService;
     }
 
+    public static BannerService getBannerService(){
+        if(bannerService == null){
+            createBannerService();
+        }
+        return bannerService;
+    }
+
     private static void createMeiziService(){
         meiziService = createRetrofit(API.Base_MEIZI_URL).create(MeiziService.class);
     }
@@ -61,6 +69,10 @@ public class ApiManage {
 
     private static void createRandJoyService(){
         randJoyService = createRetrofit(API.RAND_JOY_URL).create(RandJoyService.class);
+    }
+
+    private static void createBannerService(){
+        bannerService = createRetrofit(API.BANNER_URL).create(BannerService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl){

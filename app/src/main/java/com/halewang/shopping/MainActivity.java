@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.gson.Gson;
+import com.halewang.shopping.model.bean.banner.BannerBean;
+import com.halewang.shopping.model.bean.banner.BannerModel;
 import com.halewang.shopping.model.bean.seckill.SeckillBean;
 import com.halewang.shopping.presenter.MainPresenter;
 import com.halewang.shopping.view.MainView;
@@ -33,6 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import rx.Subscriber;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter>
         implements MainView, NavigationView.OnNavigationItemSelectedListener {
@@ -57,17 +60,13 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         initToolbar();
         initMenu();
         initSearchView();
-
+        Log.d(TAG, "onCreate: " + System.currentTimeMillis());
+        System.out.println("当前时间"+System.currentTimeMillis());
         presenter.onStart();
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                testMiaosha();
 
-            }
-        }).start();*/
+        //register();
 
-        register();
+        Log.d(TAG, "onCreate: " + System.currentTimeMillis());
     }
 
 

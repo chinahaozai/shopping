@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -55,6 +56,7 @@ public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> 
             presenter.getCompareList(getKeyword());
         }
         presenter.onStart();
+        long currentTimeMillis = System.currentTimeMillis();
     }
 
     private String getKeyword(){
