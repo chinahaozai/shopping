@@ -47,9 +47,16 @@ public class API {
     /**
      * http://www.mgpyh.com/api/v1/get_more/?api=true&request_key=newest&page=1&appkey=pear&channel=GooglePlay&clientversion=3.0.0&os=android&productid=a1&requesttime=1482104250382&resolution=1080*1920&device=Android
      */
-    //买个便宜货getHot
+    //买个便宜货-热门
     /**
      * http://www.mgpyh.com/api/v1/get_hot/?appkey=pear&channel=GooglePlay&clientversion=3.0.0&os=android&productid=a1&requesttime=1482104249996&resolution=1080*1920&device=Android
      */
+    public static final String Hot_URL = BARGAIN_BASE_URL + "/api/v1/";
+
+    //买个便宜货首页推荐
+    public static final String HOME_RECOMMEND_URL = BARGAIN_BASE_URL + "/api/v1/";
+
+
+
 
 }

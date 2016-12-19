@@ -14,6 +14,10 @@ import android.view.MenuItem;
 import com.google.gson.Gson;
 import com.halewang.shopping.model.bean.banner.BannerBean;
 import com.halewang.shopping.model.bean.banner.BannerModel;
+import com.halewang.shopping.model.bean.home.RecommendBean;
+import com.halewang.shopping.model.bean.home.RecommendModel;
+import com.halewang.shopping.model.bean.hot.HotBean;
+import com.halewang.shopping.model.bean.hot.HotModel;
 import com.halewang.shopping.model.bean.seckill.SeckillBean;
 import com.halewang.shopping.presenter.MainPresenter;
 import com.halewang.shopping.view.MainView;
@@ -61,10 +65,42 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         initMenu();
         initSearchView();
         Log.d(TAG, "onCreate: " + System.currentTimeMillis());
-        System.out.println("当前时间"+System.currentTimeMillis());
         presenter.onStart();
 
         //register();
+        /*HotModel.getHotData(new Subscriber<HotBean>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: finish");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: finish");
+            }
+
+            @Override
+            public void onNext(HotBean bean) {
+                Log.d(TAG, "onNext: " + bean.toString());
+            }
+        }, System.currentTimeMillis());*/
+
+        RecommendModel.getRecommendData(new Subscriber<RecommendBean>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: finish");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: finish");
+            }
+
+            @Override
+            public void onNext(RecommendBean bean) {
+                Log.d(TAG, "onNext: " + bean.toString());
+            }
+        }, 1, System.currentTimeMillis());
 
         Log.d(TAG, "onCreate: " + System.currentTimeMillis());
     }
@@ -192,7 +228,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_quit) {
-
+            startActivity(new Intent(MainActivity.this, TablaoutTestActivity.class));
         }
 
         mDrawer.closeDrawer(GravityCompat.START);

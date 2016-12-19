@@ -3,9 +3,10 @@
     <color name="colorPrimary">#0f9bf9</color>
     <color name="colorPrimaryDark">#038ECE</color>
     <color name="colorAccent">#038ECE</color>
-    <color name="colorRedPrimary">#F44336</color>
-    <color name="colorRedPrimaryDark">#E53935</color>
-    <color name="colorRedAccent">#D32F2F</color>
+    <color name="colorRedPrimary">#EF5350</color>
+    <color name="colorRedPrimaryDark">#F44336</color>
+    <color name="colorRedAccent">#E53935</color>
     <color name="colorProgress2">#FF000000</color>
     <color name="colorProgress">#00000000</color>
+    <color name="colorTime">#d6d4d4</color>
 </resources>
