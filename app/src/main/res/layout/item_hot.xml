@@ -46,10 +46,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true">
                     <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/tv_comment_count"
                         android:src="@drawable/comment_icon"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginRight="3dp"/>
                     <TextView
                         android:id="@+id/tv_comment_count"

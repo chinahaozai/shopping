@@ -191,7 +191,7 @@ public class MainPresenter extends BasePresenter<MainView>{
                 for(BannerDetail detail : items){
                     dealTitles.add(detail.getPost_title());
                     imageUrls.add(detail.getSlide_thumb());
-                    dealUrls.add(API.BARGAIN_BASE_URL+detail.getPost_url());
+                    dealUrls.add(API.OFFICIAL_URL +detail.getPost_url());
                 }
 
                 mBanner.setImages(imageUrls);

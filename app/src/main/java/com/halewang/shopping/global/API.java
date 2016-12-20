@@ -33,11 +33,11 @@ public class API {
     /**
      * 买个便宜货
      */
-    public static final String BARGAIN_BASE_URL = "http://www.mgpyh.com";
 
-    //买个便宜货首页Banner数据
-    public static final String BANNER_URL = BARGAIN_BASE_URL + "/api/v1/";
-    //买个便宜货首页getMore
+    public static final String OFFICIAL_URL = "http://www.mgpyh.com";
+
+    public static final String BARGAIN_URL = "http://www.mgpyh.com/api/v1/";
+
     /**
      * http://www.mgpyh.com/api/v1/get_more/?api=true&request_key=solarize&page=1&appkey=pear&channel=GooglePlay&clientversion=3.0.0&os=android&productid=a1&requesttime=1482104249981&resolution=1080*1920&device=Android
      */
@@ -47,16 +47,19 @@ public class API {
     /**
      * http://www.mgpyh.com/api/v1/get_more/?api=true&request_key=newest&page=1&appkey=pear&channel=GooglePlay&clientversion=3.0.0&os=android&productid=a1&requesttime=1482104250382&resolution=1080*1920&device=Android
      */
-    //买个便宜货-热门
+    /**
+     * 买个便宜货
+     * (get_more)晒单-request_key=solarize
+     * (get_more)首页数据-request_key=newest
+     * (get_more)必应-request_key=not_good_bomb
+     */
     /**
      * http://www.mgpyh.com/api/v1/get_hot/?appkey=pear&channel=GooglePlay&clientversion=3.0.0&os=android&productid=a1&requesttime=1482104249996&resolution=1080*1920&device=Android
      */
-    public static final String Hot_URL = BARGAIN_BASE_URL + "/api/v1/";
+    public static final String HOT_URL = BARGAIN_URL + "/api/v1/";
 
     //买个便宜货首页推荐
-    public static final String HOME_RECOMMEND_URL = BARGAIN_BASE_URL + "/api/v1/";
-
-
+    public static final String HOME_RECOMMEND_URL = BARGAIN_URL + "/api/v1/";
 
 
 }

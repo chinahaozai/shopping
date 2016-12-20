@@ -31,6 +31,7 @@ public class TablaoutTestActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("比一比");
         mPager = (ViewPager) findViewById(R.id.viewpager);
+        mPager.setOffscreenPageLimit(4);
         mTabLayout = (TabLayout) findViewById(R.id.tab);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabs = new ArrayList<>();

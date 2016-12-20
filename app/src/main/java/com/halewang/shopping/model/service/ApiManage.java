@@ -21,6 +21,7 @@ public class ApiManage {
     private static BannerService bannerService;
     private static HotService hotService;
     private static HomeRecommendService homeRecommendService;
+    private static ShaidanService shaidanService;
 
     public static CompareService getCompareService(){
         if(compareService == null){
@@ -71,6 +72,13 @@ public class ApiManage {
         return homeRecommendService;
     }
 
+    public static ShaidanService getShaidanService(){
+        if(shaidanService == null){
+            createShaidanService();
+        }
+        return shaidanService;
+    }
+
     private static void createMeiziService(){
         meiziService = createRetrofit(API.Base_MEIZI_URL).create(MeiziService.class);
     }
@@ -88,15 +96,20 @@ public class ApiManage {
     }
 
     private static void createBannerService(){
-        bannerService = createRetrofit(API.BANNER_URL).create(BannerService.class);
+        bannerService = createRetrofit(API.BARGAIN_URL).create(BannerService.class);
     }
 
     private static void createHotService(){
-        hotService = createRetrofit(API.Hot_URL).create(HotService.class);
+        hotService = createRetrofit(API.BARGAIN_URL).create(HotService.class);
     }
 
     private static void createHomeRecommendService(){
         homeRecommendService = createRetrofit(API.HOME_RECOMMEND_URL).create(HomeRecommendService.class);
+    }
+
+    private static void createShaidanService(){
+
+        shaidanService = createRetrofit(API.BARGAIN_URL).create(ShaidanService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl){
