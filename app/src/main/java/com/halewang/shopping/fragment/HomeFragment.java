@@ -2,16 +2,24 @@ package com.halewang.shopping.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.halewang.shopping.presenter.HotPresenter;
+import com.halewang.shopping.view.fragment.HotView;
+
 /**
  * Created by halewang on 2016/12/19.
  */
 
-public class HomeFragment extends BaseFragment{
+public class HomeFragment extends BaseFragment<HotView,HotPresenter> implements HotView{
+
+    private static final String TAG = "HomeFragment";
 
     @Nullable
     @Override
@@ -19,5 +27,47 @@ public class HomeFragment extends BaseFragment{
         TextView textView = new TextView(getActivity());
         textView.setText("我是首页");
         return textView;
+    }
+
+    @Override
+    public HotPresenter initPresenter() {
+        Log.d(TAG, "initPresenter: finish");
+
+        return new HotPresenter(getActivity());
+    }
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return null;
+    }
+
+    @Override
+    public SwipeRefreshLayout getRefreshLayout() {
+        return null;
+    }
+
+    @Override
+    public void showLoadMore() {
+
+    }
+
+    @Override
+    public void hideLoadMore() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isFirstLoad) {
+
+    }
+
+    @Override
+    public void showErr(String err) {
+
     }
 }
