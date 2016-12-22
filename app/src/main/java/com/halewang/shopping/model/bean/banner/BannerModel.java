@@ -1,5 +1,7 @@
 package com.halewang.shopping.model.bean.banner;
 
+import android.util.Log;
+
 import com.halewang.shopping.global.API;
 import com.halewang.shopping.model.service.ApiManage;
 
@@ -13,11 +15,14 @@ import rx.schedulers.Schedulers;
 
 public class BannerModel {
     public static void getBannerData(Subscriber<BannerBean> subscriber,long currentTime){
+        Log.d("MainPresenter", "getBannerData start: " + System.currentTimeMillis());
         ApiManage.getBannerService().getBannerData("pear","GooglePlay","3.0.0","android","a1",currentTime,"1080*1920","Android")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
+        Log.d("MainPresenter", "getBannerData   end: " + System.currentTimeMillis());
+
     }
 
     /**

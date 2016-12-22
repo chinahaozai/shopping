@@ -3,7 +3,10 @@ package com.halewang.shopping;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +28,9 @@ import com.search.material.library.MaterialSearchView;
 import com.youth.banner.Banner;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -49,8 +54,10 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     private MaterialSearchView mSearchView;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawer;
-    private Banner mBanner;
+    private ViewPager mViewPager;
     private Toolbar mToolbar;
+    private TabLayout mTabLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +73,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         initSearchView();
         Log.d(TAG, "onCreate: " + System.currentTimeMillis());
         presenter.onStart();
-
-        //register();
-        /*HotModel.getHotData(new Subscriber<HotBean>() {
-            @Override
-            public void onCompleted() {
-                Log.d(TAG, "onCompleted: finish");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.d(TAG, "onError: finish");
-            }
-
-            @Override
-            public void onNext(HotBean bean) {
-                Log.d(TAG, "onNext: " + bean.toString());
-            }
-        }, System.currentTimeMillis());*/
 
         RecommendModel.getRecommendData(new Subscriber<RecommendBean>() {
             @Override
@@ -108,14 +97,16 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
 
     private void initView() {
-        mBanner = (Banner) findViewById(R.id.banner);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mTabLayout = (TabLayout) findViewById(R.id.tab);
     }
 
     private void initToolbar() {
         setSupportActionBar(mToolbar);
     }
+
 
     private void initMenu() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -148,37 +139,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
             }
         });
     }
-
-
-    /*private void testMiaosha() {
-        OkHttpClient mOkHttpClient = new OkHttpClient();
-        RequestBody formBody = new FormBody.Builder()
-                .add("size", "10")
-                .build();
-        Request request = new Request.Builder()
-                .url("http://api.juanpi.com/open/jiukuaiyou")
-                .post(formBody)
-                .build();
-        Call call = mOkHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                String str = response.body().string();
-                String jsonData = str.substring(12, str.length() - 2);
-                Gson gson = new Gson();
-                SeckillBean bean = gson.fromJson(jsonData, SeckillBean.class);
-                Log.i(TAG, jsonData);
-                Log.d(TAG, "解析出来的数据 " + bean.getGoodslist().get(0).toString());
-
-            }
-        });
-    }*/
-
 
     @Override
     protected void onResume() {
@@ -236,8 +196,13 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     }
 
     @Override
-    public Banner getBanner() {
-        return mBanner;
+    public TabLayout getTabLayout() {
+        return mTabLayout;
+    }
+
+    @Override
+    public ViewPager getViewPager() {
+        return mViewPager;
     }
 
     @Override

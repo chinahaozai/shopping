@@ -1,5 +1,7 @@
 package com.halewang.shopping.model.bean.hot;
 
+import android.util.Log;
+
 import com.halewang.shopping.model.bean.banner.BannerBean;
 import com.halewang.shopping.model.service.ApiManage;
 
@@ -13,11 +15,13 @@ import rx.schedulers.Schedulers;
 
 public class HotModel {
     public static void getHotData(Subscriber<HotBean> subscriber,long currentTime){
+        Log.d("HotPresenter", "getHotData:star"+System.currentTimeMillis());
         ApiManage.getHotService().getHotData("pear","GooglePlay","3.0.0","android","a1",currentTime,"1080*1920","Android")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
+        Log.d("HotPresenter", "getHotData: end"+System.currentTimeMillis());
     }
 
     /**

@@ -10,12 +10,17 @@
     tools:context="com.halewang.shopping.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <com.youth.banner.Banner
+    <!--<com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:indicator_width="5dp"
         app:indicator_height="5dp">
 
-    </com.youth.banner.Banner>
+    </com.youth.banner.Banner>-->
+    <android.support.v4.view.ViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

@@ -28,7 +28,7 @@ public class BingFragment extends BaseFragment<HotView,HotPresenter> implements 
 
     @Override
     public HotPresenter initPresenter() {
-        return new HotPresenter(getActivity());
+        return null;
     }
 
     @Override

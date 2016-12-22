@@ -3,6 +3,9 @@ package com.halewang.shopping.presenter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -10,6 +13,11 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.halewang.shopping.MainActivity;
 import com.halewang.shopping.ProductDetailActivity;
+import com.halewang.shopping.adapter.HomePagerAdapter;
+import com.halewang.shopping.fragment.BingFragment;
+import com.halewang.shopping.fragment.HomeFragment;
+import com.halewang.shopping.fragment.HotFragment;
+import com.halewang.shopping.fragment.ShaidanFragment;
 import com.halewang.shopping.global.API;
 import com.halewang.shopping.model.bean.banner.BannerBean;
 import com.halewang.shopping.model.bean.banner.BannerDetail;
@@ -48,8 +56,12 @@ public class MainPresenter extends BasePresenter<MainView>{
     private List<String> dealTitles;
     private List<String> imageUrls;
     private List<String> dealUrls;
+    private List<String> mTabs;
+    private List<Fragment> mFragments;
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
 
-    private Banner mBanner;
+    //private Banner mBanner;
 
     public MainPresenter(Context context){
         mContext = context;
@@ -58,86 +70,43 @@ public class MainPresenter extends BasePresenter<MainView>{
     @Override
     public void onStart() {
         super.onStart();
-        //initBannerData();
-        initBannerData2();
+        //initBannerData2();
+        initTabLayout();
+        initViewPager();
     }
 
-    private void initBannerData(){
-        mBanner = getMvpView().getBanner();
-        dealTitles = new ArrayList<>();
-        imageUrls = new ArrayList<>();
-        dealUrls = new ArrayList<>();
-
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        mBanner.setImageLoader(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
-                Glide.with(mContext)
-                        .load(path)
-                        .centerCrop()
-                        .into(imageView);
-            }
-        });
-        mBanner.setBannerAnimation(Transformer.DepthPage);
-        mBanner.isAutoPlay(true);
-        mBanner.setDelayTime(2500);
-        mBanner.setIndicatorGravity(BannerConfig.RIGHT);
-
-        mBanner.setOnBannerClickListener(new OnBannerClickListener() {
-            @Override
-            public void OnBannerClick(int position) {
-                Intent intent = new Intent(mContext, ProductDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("url", dealUrls.get(position - 1));
-                bundle.putString("brand", "");
-                intent.putExtra("detail", bundle);
-                mContext.startActivity(intent);
-            }
-        });
-
-        OkHttpClient mOkHttpClient=new OkHttpClient();
-        RequestBody formBody = new FormBody.Builder()
-                .add("size", "10")
-                .build();
-        Request request = new Request.Builder()
-                .url(API.JUANPI_URL)
-                .post(formBody)
-                .build();
-        Call call = mOkHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                String str = response.body().string();
-                String jsonData = str.substring(12,str.length() - 2);
-                Gson gson = new Gson();
-                SeckillBean bean = gson.fromJson(jsonData, SeckillBean.class);
-                /*Log.i(TAG, jsonData);
-                Log.d(TAG, "解析出来的数据 " + bean.getGoodslist().get(0).toString());*/
-                for(Seckill seckill: bean.getGoodslist()){
-                    dealTitles.add(seckill.getDeal_title());
-                    imageUrls.add(seckill.getDeal_image());
-                    dealUrls.add(seckill.getDeal_taobao_link());
-                }
-                Log.d(TAG, "onResponse: "+ dealTitles.toString());
-                mBanner.setImages(imageUrls);
-                mBanner.setBannerTitles(dealTitles);
-
-                MainActivity mView = (MainActivity) getMvpView();
-                mView.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mBanner.start();
-                    }
-                });
-            }
-        });
+    private void initTabLayout(){
+        mTabLayout = getMvpView().getTabLayout();
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabs = new ArrayList<>();
+        mTabs.add("首页");
+        mTabs.add("晒单");
+        mTabs.add("必应");
+        mTabs.add("热门");
     }
-    private void initBannerData2(){
+
+    private void initViewPager(){
+        mViewPager = getMvpView().getViewPager();
+        mViewPager.setOffscreenPageLimit(4);
+        mFragments = new ArrayList<>();
+        mFragments.add(new HomeFragment());
+        mFragments.add(new ShaidanFragment());
+        mFragments.add(new BingFragment());
+        mFragments.add(new HotFragment());
+
+        MainActivity activity = (MainActivity) mContext;
+        HomePagerAdapter mAdapter = new HomePagerAdapter(activity.getSupportFragmentManager(), mFragments, mTabs);
+        mViewPager.setAdapter(mAdapter);
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTabs.get(0)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTabs.get(1)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTabs.get(2)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTabs.get(3)));
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabsFromPagerAdapter(mAdapter);
+    }
+
+
+    /*private void initBannerData2(){
         mBanner = getMvpView().getBanner();
         dealTitles = new ArrayList<>();
         imageUrls = new ArrayList<>();
@@ -172,7 +141,7 @@ public class MainPresenter extends BasePresenter<MainView>{
         BannerModel.getBannerData(new Subscriber<BannerBean>() {
             @Override
             public void onCompleted() {
-                Log.d(TAG, "onCompleted: finish");
+                Log.d(TAG, "onCompleted: " + System.currentTimeMillis());
                 System.out.println("onCompleted: finish");
             }
 
@@ -184,7 +153,7 @@ public class MainPresenter extends BasePresenter<MainView>{
 
             @Override
             public void onNext(BannerBean bannerBean) {
-                Log.d(TAG, "onNext: " + bannerBean.toString());
+                Log.d(TAG, "     onNext: " + System.currentTimeMillis());
                 System.out.println("onNext: " + bannerBean.toString());
 
                 List<BannerDetail> items = bannerBean.getItems();
@@ -206,5 +175,5 @@ public class MainPresenter extends BasePresenter<MainView>{
                 });
             }
         },System.currentTimeMillis());
-    }
+    }*/
 }

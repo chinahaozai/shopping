@@ -1,5 +1,6 @@
 package com.halewang.shopping.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,60 +9,53 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.halewang.shopping.model.bean.shaidan.ShaidanBean;
-import com.halewang.shopping.model.bean.shaidan.ShaidanModel;
-import com.halewang.shopping.presenter.HotPresenter;
-import com.halewang.shopping.view.fragment.HotView;
-
-import rx.Subscriber;
+import com.halewang.shopping.R;
+import com.halewang.shopping.presenter.ShaidanPresenter;
+import com.halewang.shopping.view.fragment.ShaidanView;
 
 /**
  * Created by halewang on 2016/12/19.
  */
 
-public class ShaidanFragment extends BaseFragment<HotView,HotPresenter> implements HotView{
+public class ShaidanFragment extends BaseFragment<ShaidanView,ShaidanPresenter> implements ShaidanView{
 
     private static final String TAG = "ShaidanFragment";
+    private View mView;
+    private Context mContext;
+
+    private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mRefreshLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("我是晒单页");
-        ShaidanModel.getShaidanData(new Subscriber<ShaidanBean>() {
-            @Override
-            public void onCompleted() {
-                Log.d(TAG, "onCompleted: finish");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.d(TAG, "onError: Application occur error");
-            }
-
-            @Override
-            public void onNext(ShaidanBean bean) {
-                Log.d(TAG, "onNext: " + bean.toString());
-            }
-        },1,System.currentTimeMillis());
-        return textView;
+        mView = inflater.inflate(R.layout.fragment_shaidan,container,false);
+        mRecyclerView = (RecyclerView) mView.findViewById(R.id.recyclerview_shaidan);
+        mRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.refresh_shaidan);
+        mContext = getActivity();
+        Log.d(TAG, "onCreateView: finish" + System.currentTimeMillis());
+        return mView;
     }
 
     @Override
-    public HotPresenter initPresenter() {
-        return new HotPresenter(getActivity());
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public ShaidanPresenter initPresenter() {
+        return new ShaidanPresenter(mContext);
     }
 
     @Override
     public RecyclerView getRecyclerView() {
-        return null;
+        return mRecyclerView;
     }
 
     @Override
     public SwipeRefreshLayout getRefreshLayout() {
-        return null;
+        return mRefreshLayout;
     }
 
     @Override

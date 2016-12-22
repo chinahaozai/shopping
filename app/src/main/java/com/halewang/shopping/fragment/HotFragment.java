@@ -56,40 +56,8 @@ public class HotFragment extends BaseFragment<HotView,HotPresenter> implements H
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mRecyclerView = (RecyclerView) mView.findViewById(R.id.recyclerview_hot);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        //CompareModel.getCompareList(mSubscriber, "test", 1, 20);
-        HotModel.getHotData(new Subscriber<HotBean>() {
-            @Override
-            public void onCompleted() {
-                Log.d(TAG, "onCompleted: 加载完成" + System.currentTimeMillis());
-            }
+        super.onViewCreated(view,savedInstanceState);
 
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(HotBean bean) {
-                Log.d(TAG, "onNext: finish" + System.currentTimeMillis());
-                final List<Hot> items = bean.getItems();
-                HotListAdapter adapter = new HotListAdapter(mContext, items);
-                adapter.setOnItemClickListener(new HotListAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(mContext, ProductDetailActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("url", API.OFFICIAL_URL +items.get(position).getPost_url());
-                        bundle.putString("brand", "");
-                        intent.putExtra("detail", bundle);
-                        mContext.startActivity(intent);
-                    }
-                });
-                mRecyclerView.setAdapter(adapter);
-            }
-        },System.currentTimeMillis());
     }
 
     @Override

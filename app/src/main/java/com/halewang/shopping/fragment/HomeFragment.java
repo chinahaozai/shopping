@@ -33,7 +33,7 @@ public class HomeFragment extends BaseFragment<HotView,HotPresenter> implements 
     public HotPresenter initPresenter() {
         Log.d(TAG, "initPresenter: finish");
 
-        return new HotPresenter(getActivity());
+        return null;
     }
 
     @Override
