@@ -79,7 +79,7 @@ public class HotPresenter extends BasePresenter<HotView>{
                 }
             });
             HotListAdapter2 adapter = new HotListAdapter2(items);
-            adapter.openLoadAnimation();
+            adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
             mRecyclerView.setAdapter(adapter);
         }
     };

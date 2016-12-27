@@ -94,7 +94,6 @@ public class HotListAdapter extends RecyclerView.Adapter<HotListAdapter.MyHolder
 
         public MyHolder(View itemView) {
             super(itemView);
-
             hotItem = (CardView) itemView.findViewById(R.id.hot_item);
             tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
             tvTime = (TextView) itemView.findViewById(R.id.tv_time);

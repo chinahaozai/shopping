@@ -90,7 +90,7 @@ public class ShaidanPresenter extends BasePresenter<ShaidanView> {
                     }
                 });
                 ShaidanListAdapter2 adapter = new ShaidanListAdapter2(items);
-                adapter.openLoadAnimation();
+                adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
                 mRecyclerView.setAdapter(adapter);
             }
         },1,System.currentTimeMillis());

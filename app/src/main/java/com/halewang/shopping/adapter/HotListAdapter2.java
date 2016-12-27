@@ -28,8 +28,9 @@ public class HotListAdapter2 extends BaseQuickAdapter<Hot, BaseViewHolder>{
                 .setText(R.id.tv_time, item.getTime())
                 .setText(R.id.tv_comment_count, item.getComment_count());
 
+        String url = item.getThumbnail().replace("https","http");
         Glide.with(mContext)
-                .load(item.getThumbnail())
+                .load(url)
                 .centerCrop()
                 .into((ImageView) helper.getView(R.id.image_hot));
     }
