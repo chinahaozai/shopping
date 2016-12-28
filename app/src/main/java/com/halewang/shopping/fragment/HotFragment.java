@@ -92,7 +92,12 @@ public class HotFragment extends BaseFragment<HotView,HotPresenter> implements H
 
     @Override
     public void hideLoading(boolean isFirstLoad) {
-
+        mRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override

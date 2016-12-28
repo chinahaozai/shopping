@@ -3,6 +3,7 @@ package com.halewang.shopping.presenter;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,36 +52,6 @@ public class JoyPresenter extends BasePresenter<JoyView> {
         }
     };
 
-    /*private Subscriber<RandJoyBean> mRandJoyBeanSubscriber = new Subscriber<RandJoyBean>() {
-        @Override
-        public void onCompleted() {
-            Log.d(TAG, "onCompleted: finish");
-            getMvpView().onLoadMoreFinish();
-            isLoading = false;
-            boolean unsubscribed = mRandJoyBeanSubscriber.isUnsubscribed();
-            Log.d(TAG, "isUnsubscribed: " + unsubscribed);
-            if(!unsubscribed){
-                mRandJoyBeanSubscriber.unsubscribe();
-            }
-            unsubscribed = mRandJoyBeanSubscriber.isUnsubscribed();
-            Log.d(TAG, "isUnsubscribed: " + unsubscribed);
-
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            Log.d(TAG, "onError: finish");
-            getMvpView().showErr(e.toString());
-        }
-
-        @Override
-        public void onNext(RandJoyBean bean) {
-            Log.d(TAG, "onNext: finish");
-            List<Joy> result = bean.getResult();
-            mAdapter.addAll(result);
-        }
-    };*/
     private JoyListAdapter mAdapter;
 
     public JoyPresenter(Context context) {
@@ -110,6 +81,9 @@ public class JoyPresenter extends BasePresenter<JoyView> {
                 }
             }
         });
+        RecyclerView.ItemAnimator animator = new DefaultItemAnimator();
+        animator.setChangeDuration(0);
+        getMvpView().getRecyclerView().setItemAnimator(animator);
 
         initRefresh();
     }

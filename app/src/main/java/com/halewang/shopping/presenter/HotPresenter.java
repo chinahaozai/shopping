@@ -3,6 +3,7 @@ package com.halewang.shopping.presenter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -78,12 +79,20 @@ public class HotPresenter extends BasePresenter<HotView>{
                     }
                 }
             });
-            HotListAdapter2 adapter = new HotListAdapter2(items);
-            adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
-            mRecyclerView.setAdapter(adapter);
+            mAdapter = new HotListAdapter2(items);
+            mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
+            /*mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+                @Override
+                public void onLoadMoreRequested() {
+                    mAdapter.loadMoreEnd();
+                }
+            });*/
+            mRecyclerView.setAdapter(mAdapter);
         }
     };
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mRefreshLayout;
+    private HotListAdapter2 mAdapter;
 
     public HotPresenter(Context context){
         mContext = context;
@@ -95,12 +104,38 @@ public class HotPresenter extends BasePresenter<HotView>{
         super.onStart();
         Log.d(TAG, "onStart: finish" + System.currentTimeMillis());
         initRecyclerView();
+        initRefresh();
     }
 
     private void initRecyclerView(){
         mRecyclerView = getMvpView().getRecyclerView();
+        mRefreshLayout = getMvpView().getRefreshLayout();
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         HotModel.getHotData(mSubscriber,System.currentTimeMillis());
+    }
+
+    private void initRefresh(){
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                HotModel.getHotData(new Subscriber<HotBean>() {
+                    @Override
+                    public void onCompleted() {
+                        getMvpView().hideLoading(false);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getMvpView().showErr(e.toString());
+                    }
+
+                    @Override
+                    public void onNext(HotBean bean) {
+                        mAdapter.refreshData(bean.getItems());
+                    }
+                },System.currentTimeMillis());
+            }
+        });
     }
 }

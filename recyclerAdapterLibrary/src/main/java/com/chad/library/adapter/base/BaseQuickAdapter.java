@@ -1368,4 +1368,10 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         }
         return -1;
     }
+
+    public void refreshData(List<T> items){
+        mData.clear();
+        mData.addAll(items);
+        notifyDataSetChanged();
+    }
 }

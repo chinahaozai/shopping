@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.halewang.shopping.R;
 import com.halewang.shopping.model.bean.home.Home;
-import com.halewang.shopping.model.bean.shaidan.Shaidan;
+import com.halewang.shopping.utils.TextColorUtil;
 import com.youth.banner.Banner;
 
 import java.util.List;
@@ -61,6 +61,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyHold
         notifyDataSetChanged();
     }
 
+    public void addAll(List<Home> items){
+        mDatas.addAll(items);
+        notifyDataSetChanged();
+    }
+
+    public void refresh(List<Home> items){
+        mDatas.clear();
+        addAll(items);
+    }
+
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == TYPE_NORMAL) {
@@ -74,26 +84,19 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyHold
 
     @Override
     public void onBindViewHolder(MyHolder holder, final int position) {
-
         if(getItemViewType(position) == TYPE_NORMAL) {
             holder.homeItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mItemClickListener.onItemClick(view, position);
+                    mItemClickListener.onItemClick(view, position - 1);
                 }
             });
-            holder.tvTitle.setText(mDatas.get(position - 1).getPost_title());
+            holder.tvTitle.setText(TextColorUtil.moneyTurnRed(mDatas.get(position - 1).getPost_title()));
             Glide.with(mContext)
                     .load(mDatas.get(position - 1).getThumbnail())
                     .centerCrop()
                     .into(holder.imageView);
-        }else{
-            initHeader();
         }
-    }
-
-    private void initHeader(){
-
     }
 
     @Override

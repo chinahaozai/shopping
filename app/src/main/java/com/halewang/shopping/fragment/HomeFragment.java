@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.halewang.shopping.R;
@@ -28,6 +29,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
     //private Banner mBanner;
     private SwipeRefreshLayout mRefreshLayout;
     private View header;
+    private RelativeLayout mRelativeLayout;
 
     @Nullable
     @Override
@@ -37,6 +39,7 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_home);
         //mBanner = (Banner) view.findViewById(R.id.banner_home);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_home);
+        mRelativeLayout = (RelativeLayout) view.findViewById(R.id.home_load_more);
         return view;
     }
 
@@ -69,12 +72,12 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
 
     @Override
     public void showLoadMore() {
-
+        mRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoadMore() {
-
+        mRelativeLayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -84,7 +87,12 @@ public class HomeFragment extends BaseFragment<HomeView,HomePresenter> implement
 
     @Override
     public void hideLoading(boolean isFirstLoad) {
-
+        mRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override

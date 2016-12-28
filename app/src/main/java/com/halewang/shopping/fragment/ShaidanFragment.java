@@ -75,7 +75,12 @@ public class ShaidanFragment extends BaseFragment<ShaidanView,ShaidanPresenter> 
 
     @Override
     public void hideLoading(boolean isFirstLoad) {
-
+        mRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override
