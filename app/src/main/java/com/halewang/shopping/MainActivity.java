@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,36 +13,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.gson.Gson;
-import com.halewang.shopping.model.bean.banner.BannerBean;
-import com.halewang.shopping.model.bean.banner.BannerModel;
 import com.halewang.shopping.model.bean.home.RecommendBean;
 import com.halewang.shopping.model.bean.home.RecommendModel;
-import com.halewang.shopping.model.bean.hot.HotBean;
-import com.halewang.shopping.model.bean.hot.HotModel;
-import com.halewang.shopping.model.bean.seckill.SeckillBean;
+import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.presenter.MainPresenter;
 import com.halewang.shopping.view.MainView;
 import com.search.material.library.MaterialSearchView;
-import com.youth.banner.Banner;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import rx.Subscriber;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter>
@@ -67,6 +55,10 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         ShareSDK.initSDK(this);
         SMSSDK.initSDK(this, "19e6883036546", "af7b43a7fee9b57942003b40c665acdd");
+        Bmob.initialize(this,"32e83924210f9cf2fee8cb29bf9e3ced");
+
+        testBmobInsert();
+        //testBmobQuery();
         initView();
         initToolbar();
         initMenu();
@@ -94,6 +86,36 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         Log.d(TAG, "onCreate: " + System.currentTimeMillis());
     }
 
+    private void testBmobInsert(){
+        User user = new User();
+        user.setName("王浩");
+        user.setPhone("13363738372");
+        user.setPassword("diedigmndjk");
+        user.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if(e==null){
+                    Log.d(TAG, "添加数据成功，返回objectId为："+s);
+                }else{
+                    Log.d(TAG, "添加错误: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void testBmobQuery(){
+        BmobQuery<User> bmobQuery = new BmobQuery<>();
+        bmobQuery.getObject("68cb5ba63c", new QueryListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if(e == null){
+                    Log.d(TAG, "查询成功: " + user.toString());
+                }else{
+                    Log.d(TAG, "查询失败: " + e.getMessage());
+                }
+            }
+        });
+    }
 
 
     private void initView() {
