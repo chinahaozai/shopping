@@ -57,8 +57,8 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         SMSSDK.initSDK(this, "19e6883036546", "af7b43a7fee9b57942003b40c665acdd");
         Bmob.initialize(this,"32e83924210f9cf2fee8cb29bf9e3ced");
 
-        testBmobInsert();
-        //testBmobQuery();
+        //testBmobInsert();
+        testBmobQuery();
         initView();
         initToolbar();
         initMenu();
@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
     private void testBmobQuery(){
         BmobQuery<User> bmobQuery = new BmobQuery<>();
-        bmobQuery.getObject("68cb5ba63c", new QueryListener<User>() {
+        bmobQuery.getObject("54712df8e0", new QueryListener<User>() {
             @Override
             public void done(User user, BmobException e) {
                 if(e == null){
