@@ -61,5 +61,7 @@ public class API {
     //买个便宜货首页推荐
     public static final String HOME_RECOMMEND_URL = BARGAIN_URL + "/api/v1/";
 
-
+    /**
+     * 值得买 http://appp.kiees.com/88344365.php?action=rank&client=android&start=0&count=30
+     */
 }
