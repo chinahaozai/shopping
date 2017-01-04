@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.halewang.shopping.model.bean.heat.HeatBean;
+import com.halewang.shopping.model.bean.heat.HeatModel;
 import com.halewang.shopping.model.bean.home.RecommendBean;
 import com.halewang.shopping.model.bean.home.RecommendModel;
 import com.halewang.shopping.model.bean.user.User;
@@ -66,24 +68,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         Log.d(TAG, "onCreate: " + System.currentTimeMillis());
         presenter.onStart();
 
-        RecommendModel.getRecommendData(new Subscriber<RecommendBean>() {
-            @Override
-            public void onCompleted() {
-                Log.d(TAG, "onCompleted: finish");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.d(TAG, "onError: finish");
-            }
-
-            @Override
-            public void onNext(RecommendBean bean) {
-                Log.d(TAG, "onNext: " + bean.toString());
-            }
-        }, 1, System.currentTimeMillis());
-
-        Log.d(TAG, "onCreate: " + System.currentTimeMillis());
     }
 
     private void testBmobInsert(){

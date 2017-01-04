@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/deal_collection"
+          android:icon="@drawable/ic_collection"
+          android:title="Share"
+          app:showAsAction="always"/>
+
     <item android:id="@+id/deal_share"
           android:icon="@drawable/share"
           android:title="Share"

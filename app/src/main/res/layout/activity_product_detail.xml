@@ -40,7 +40,7 @@
             android:layout_height="match_parent"
             android:scrollbarSize="20dp"
             app:overlay="false"
-            app:wave_color="#0f9bf9"
+            app:wave_color="?attr/colorPrimary"
             app:wave_show="true">
 
             <WebView

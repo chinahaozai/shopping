@@ -23,6 +23,7 @@ import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spanned;
 import android.text.util.Linkify;
 import android.util.SparseArray;
 import android.view.View;
@@ -92,6 +93,12 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
      * @return The BaseViewHolder for chaining.
      */
     public BaseViewHolder setText(int viewId, CharSequence value) {
+        TextView view = getView(viewId);
+        view.setText(value);
+        return this;
+    }
+
+    public BaseViewHolder setText(int viewId, Spanned value) {
         TextView view = getView(viewId);
         view.setText(value);
         return this;

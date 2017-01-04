@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.halewang.shopping.adapter.HomePagerAdapter;
-import com.halewang.shopping.fragment.BingFragment;
+import com.halewang.shopping.fragment.HeatFragment;
 import com.halewang.shopping.fragment.HomeFragment;
 import com.halewang.shopping.fragment.HotFragment;
 import com.halewang.shopping.fragment.ShaidanFragment;
@@ -43,7 +43,7 @@ public class TablaoutTestActivity extends AppCompatActivity {
         mFragments = new ArrayList<>();
         mFragments.add(new HomeFragment());
         mFragments.add(new ShaidanFragment());
-        mFragments.add(new BingFragment());
+        mFragments.add(new HeatFragment());
         mFragments.add(new HotFragment());
 
         HomePagerAdapter mAdapter = new HomePagerAdapter(this.getSupportFragmentManager(), mFragments, mTabs);

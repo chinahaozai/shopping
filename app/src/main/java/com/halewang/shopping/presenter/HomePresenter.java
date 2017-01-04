@@ -9,11 +9,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.halewang.shopping.ProductDetailActivity;
+import com.halewang.shopping.ProductDetailActivity2;
 import com.halewang.shopping.R;
 import com.halewang.shopping.adapter.HomeListAdapter;
 import com.halewang.shopping.global.API;
@@ -95,7 +96,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
         mBanner.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void OnBannerClick(int position) {
-                Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("url", dealUrls.get(position - 1));
                 bundle.putString("brand", "");
@@ -144,11 +145,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                LinearLayoutManager layoutManager = (LinearLayoutManager)recyclerView.getLayoutManager();
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int totalItemCount = layoutManager.getItemCount();
                 int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
 
                 if (!isLoading && totalItemCount < (lastVisibleItem + 3)) {
+                    Log.d(TAG, "onScrolled: totalItemCount" + totalItemCount);
+                    Log.d(TAG, "onScrolled: lastVisibleItem" + lastVisibleItem);
                     getMvpView().showLoadMore();
                     loadMore();
                     isLoading = true;
@@ -180,7 +183,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 mAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                        Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("url", API.OFFICIAL_URL + items.get(position).getPost_url());
                         bundle.putString("brand", "");
@@ -202,7 +205,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
                             Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     getMvpView().hideLoading(false);
 
-                }else {
+                } else {
                     HomeModel.getHomeData(new Subscriber<HomeBean>() {
                         @Override
                         public void onCompleted() {
@@ -226,7 +229,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
         });
     }
 
-    private void loadMore(){
+    private void loadMore() {
         HomeModel.getHomeData(new Subscriber<HomeBean>() {
             @Override
             public void onCompleted() {

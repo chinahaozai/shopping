@@ -23,6 +23,7 @@ public class ApiManage {
     private static HomeRecommendService homeRecommendService;
     private static ShaidanService shaidanService;
     private static HomeService homeService;
+    private static HeatService heatService;
 
     public static CompareService getCompareService(){
         if(compareService == null){
@@ -87,6 +88,13 @@ public class ApiManage {
         return homeService;
     }
 
+    public static HeatService getHeatService(){
+        if(heatService == null){
+            createHeatService();
+        }
+        return heatService;
+    }
+
     private static void createMeiziService(){
         meiziService = createRetrofit(API.Base_MEIZI_URL).create(MeiziService.class);
     }
@@ -121,6 +129,10 @@ public class ApiManage {
 
     private static void createHomeService(){
         homeService = createRetrofit(API.BARGAIN_URL).create(HomeService.class);
+    }
+
+    private static void createHeatService(){
+        heatService = createRetrofit(API.HEAT_URL).create(HeatService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl){

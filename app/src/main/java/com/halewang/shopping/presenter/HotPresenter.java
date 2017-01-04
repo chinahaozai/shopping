@@ -3,6 +3,8 @@ package com.halewang.shopping.presenter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.halewang.shopping.ProductDetailActivity;
+import com.halewang.shopping.ProductDetailActivity2;
 import com.halewang.shopping.R;
 import com.halewang.shopping.adapter.HotListAdapter;
 import com.halewang.shopping.adapter.HotListAdapter2;
@@ -49,25 +52,14 @@ public class HotPresenter extends BasePresenter<HotView>{
         public void onNext(HotBean bean) {
             Log.d(TAG, " onNext: finish" + System.currentTimeMillis());
             final List<Hot> items = bean.getItems();
-            /*HotListAdapter adapter = new HotListAdapter(mContext, items);
-            adapter.setOnItemClickListener(new HotListAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Intent intent = new Intent(mContext, ProductDetailActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("url", API.OFFICIAL_URL +items.get(position).getPost_url());
-                    bundle.putString("brand", "");
-                    intent.putExtra("detail", bundle);
-                    mContext.startActivity(intent);
-                }
-            });*/
+
             mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
                 @Override
                 public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                     Hot hot = (Hot)adapter.getItem(position);
                     switch (view.getId()){
                         case R.id.hot_item:
-                            Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                            Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("url", API.OFFICIAL_URL +hot.getPost_url());
                             bundle.putString("brand", "");
@@ -81,13 +73,21 @@ public class HotPresenter extends BasePresenter<HotView>{
             });
             mAdapter = new HotListAdapter2(items);
             mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
-            /*mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
                 @Override
                 public void onLoadMoreRequested() {
-                    mAdapter.loadMoreEnd();
+                    mHandler.sendEmptyMessageDelayed(0,2000);
                 }
-            });*/
+            });
             mRecyclerView.setAdapter(mAdapter);
+        }
+    };
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+
+            mAdapter.loadMoreEnd();
         }
     };
     private RecyclerView mRecyclerView;

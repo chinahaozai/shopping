@@ -1,48 +1,20 @@
 package com.halewang.shopping.presenter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.halewang.shopping.MainActivity;
-import com.halewang.shopping.ProductDetailActivity;
 import com.halewang.shopping.adapter.HomePagerAdapter;
-import com.halewang.shopping.fragment.BingFragment;
+import com.halewang.shopping.fragment.HeatFragment;
 import com.halewang.shopping.fragment.HomeFragment;
 import com.halewang.shopping.fragment.HotFragment;
 import com.halewang.shopping.fragment.ShaidanFragment;
-import com.halewang.shopping.global.API;
-import com.halewang.shopping.model.bean.banner.BannerBean;
-import com.halewang.shopping.model.bean.banner.BannerDetail;
-import com.halewang.shopping.model.bean.banner.BannerModel;
-import com.halewang.shopping.model.bean.seckill.Seckill;
-import com.halewang.shopping.model.bean.seckill.SeckillBean;
 import com.halewang.shopping.view.MainView;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerClickListener;
-import com.youth.banner.loader.ImageLoader;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import rx.Subscriber;
 
 /**
  * Created by halewang on 2016/12/6.
@@ -81,7 +53,7 @@ public class MainPresenter extends BasePresenter<MainView>{
         mTabs = new ArrayList<>();
         mTabs.add("首页");
         mTabs.add("晒单");
-        mTabs.add("必应");
+        mTabs.add("人气");
         mTabs.add("热门");
     }
 
@@ -91,7 +63,7 @@ public class MainPresenter extends BasePresenter<MainView>{
         mFragments = new ArrayList<>();
         mFragments.add(new HomeFragment());
         mFragments.add(new ShaidanFragment());
-        mFragments.add(new BingFragment());
+        mFragments.add(new HeatFragment());
         mFragments.add(new HotFragment());
 
         MainActivity activity = (MainActivity) mContext;

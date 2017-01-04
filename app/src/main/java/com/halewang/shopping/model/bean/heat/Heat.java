@@ -7,6 +7,7 @@ package com.halewang.shopping.model.bean.heat;
 public class Heat {
     private String buyaddr;
     private String hot;
+    private String hottime;
     private String id;
     private String img;
     private String title;
@@ -58,6 +59,14 @@ public class Heat {
 
     public void setTitleurl(String titleurl) {
         this.titleurl = titleurl;
+    }
+
+    public String getHottime() {
+        return hottime;
+    }
+
+    public void setHottime(String hottime) {
+        this.hottime = hottime;
     }
 
     @Override

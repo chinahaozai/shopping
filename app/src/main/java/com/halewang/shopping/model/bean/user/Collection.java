@@ -1,10 +1,12 @@
 package com.halewang.shopping.model.bean.user;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by halewang on 2016/12/30.
  */
 
-public class Collection {
+public class Collection extends BmobObject{
     private String phone;
     private String image_url;
     private String title;

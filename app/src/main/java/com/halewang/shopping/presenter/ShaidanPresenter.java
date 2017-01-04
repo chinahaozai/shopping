@@ -13,6 +13,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.halewang.shopping.ProductDetailActivity;
+import com.halewang.shopping.ProductDetailActivity2;
 import com.halewang.shopping.R;
 import com.halewang.shopping.adapter.ShaidanListAdapter2;
 import com.halewang.shopping.global.API;
@@ -83,7 +84,7 @@ public class ShaidanPresenter extends BasePresenter<ShaidanView> {
                         Shaidan shaidan = (Shaidan) adapter.getItem(position);
                         switch (view.getId()) {
                             case R.id.shaidan_item:
-                                Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                                Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putString("url", API.OFFICIAL_URL + shaidan.getShow_url());
                                 bundle.putString("brand", "");

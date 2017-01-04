@@ -12,28 +12,25 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
-import com.cjj.MaterialRefreshLayout;
-import com.cjj.MaterialRefreshListener;
 import com.halewang.shopping.presenter.ProductDetailPresenter;
 import com.halewang.shopping.view.ProductDetailView;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class ProductDetailActivity extends BaseActivity<ProductDetailView,ProductDetailPresenter>
+public class ProductDetailActivity2 extends BaseActivity<ProductDetailView,ProductDetailPresenter>
         implements ProductDetailView{
 
     private static final String TAG = "ProductDetailActivity";
     private WebView mWebView;
     private ProgressBar mProgress;
-    private MaterialRefreshLayout mMaterialRefreshLayout;
     private String title;
     private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_detail);
+        setContentView(R.layout.activity_product_detail2);
 
         ShareSDK.initSDK(this);
 
@@ -41,7 +38,6 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
         url = getUrl();
         setupToolbar();
         initView();
-        initRefreshLayout();
         presenter.onStart();
     }
 
@@ -74,23 +70,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
     private void initView() {
         mProgress = (ProgressBar) findViewById(R.id.Progress);
         mWebView = (WebView) findViewById(R.id.webview);
-        mMaterialRefreshLayout = (MaterialRefreshLayout) findViewById(R.id.refresh);
     }
-
-    /**
-     * 初始化RefreshLayout刷新
-     */
-    private void initRefreshLayout() {
-        mMaterialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
-            @Override
-            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-                //下拉刷新停止
-                mWebView.loadUrl(mWebView.getUrl());
-                mMaterialRefreshLayout.finishRefresh();
-            }
-        });
-    }
-
 
     /**
      * 实现WebView的回退栈

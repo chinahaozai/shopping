@@ -64,4 +64,6 @@ public class API {
     /**
      * 值得买 http://appp.kiees.com/88344365.php?action=rank&client=android&start=0&count=30
      */
+    public static final String HEAT_URL = "http://appp.kiees.com/";
+
 }

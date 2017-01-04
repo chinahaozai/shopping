@@ -21,8 +21,8 @@
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -46,6 +46,10 @@
         </activity>
         <activity
             android:name=".ProductDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ProductDetailActivity2"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
@@ -93,8 +97,11 @@
             android:name=".JoyActivity"
             android:theme="@style/JoyTheme">
         </activity>
-        <activity android:name=".TablaoutTestActivity"
-                  android:theme="@style/JoyTheme">
+        <activity
+            android:name=".TablaoutTestActivity"
+            android:theme="@style/JoyTheme">
+        </activity>
+        <activity android:name=".LoginActivity">
         </activity>
     </application>
 
