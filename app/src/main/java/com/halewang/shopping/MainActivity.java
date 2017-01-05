@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.halewang.shopping.model.bean.heat.HeatBean;
 import com.halewang.shopping.model.bean.heat.HeatModel;
@@ -107,6 +109,18 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mTabLayout = (TabLayout) findViewById(R.id.tab);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
+        TextView tvUser = (TextView) view.findViewById(R.id.tv_user);
+        tvUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+        });
+
+
     }
 
     private void initToolbar() {

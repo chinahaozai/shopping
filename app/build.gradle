@@ -5,11 +5,13 @@ android {
     buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "com.halewang.shopping"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -24,6 +26,7 @@ repositories{
         dirs 'libs'
     }
 }
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
