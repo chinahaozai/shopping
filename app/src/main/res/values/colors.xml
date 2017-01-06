@@ -9,4 +9,9 @@
     <color name="colorProgress2">#FF000000</color>
     <color name="colorProgress">#00000000</color>
     <color name="colorTime">#d6d4d4</color>
+    <color name="colorLoginStroke">#b9ffffff</color>
+    <color name="colorLoginBg">#daffffff</color>
+    <color name="colorBtnPressed">#f96262</color>
+    <color name="colorBtnNormal">#dafa6666</color>
+
 </resources>

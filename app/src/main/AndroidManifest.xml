@@ -101,7 +101,8 @@
             android:name=".TablaoutTestActivity"
             android:theme="@style/JoyTheme">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

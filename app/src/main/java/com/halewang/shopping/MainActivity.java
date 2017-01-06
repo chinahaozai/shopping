@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         Bmob.initialize(this,"32e83924210f9cf2fee8cb29bf9e3ced");
 
         //testBmobInsert();
-        testBmobQuery();
+        //testBmobQuery();
         initView();
         initToolbar();
         initMenu();

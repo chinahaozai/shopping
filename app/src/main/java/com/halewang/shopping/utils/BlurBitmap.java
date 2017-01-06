@@ -19,7 +19,7 @@ public class BlurBitmap {
     /**
      * 最大模糊度(在0.0到25.0之间)
      */
-    private static final float BLUR_RADIUS = 20f;
+    private static final float BLUR_RADIUS = 10f;
     /**
      * 模糊图片的具体方法
      *
