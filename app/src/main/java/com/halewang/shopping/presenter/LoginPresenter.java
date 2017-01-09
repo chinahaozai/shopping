@@ -1,6 +1,7 @@
 package com.halewang.shopping.presenter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
@@ -9,17 +10,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.halewang.shopping.LoginActivity;
+import com.halewang.shopping.MainActivity;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.utils.InternetUtil;
+import com.halewang.shopping.utils.MD5Util;
 import com.halewang.shopping.utils.PatternUtil;
+import com.halewang.shopping.utils.PrefUtil;
 import com.halewang.shopping.view.LoginView;
 
+import java.util.HashMap;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 
 /**
  * Created by halewang on 2017/1/6.
@@ -48,6 +58,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     public void onStart() {
         initView();
         login();
+        initSignUp();
     }
 
     private void initView() {
@@ -105,18 +116,62 @@ public class LoginPresenter extends BasePresenter<LoginView> {
      * 真正执行登录操作
      */
     private void doLogin(){
+        Log.d(TAG, "doLogin: " + MD5Util.encrypt(etPassWord.getText().toString()));
+        System.out.println("加密后的密码"+MD5Util.encrypt(etPassWord.getText().toString()));
         BmobQuery<User> userQuery = new BmobQuery<>();
         userQuery.addWhereEqualTo("phone", etUser.getText().toString());
-        userQuery.addWhereEqualTo("password", etPassWord.getText().toString());
+        userQuery.addWhereEqualTo("password", MD5Util.encrypt(etPassWord.getText().toString()));
         userQuery.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
                 if(list.size() > 0){
+                    User user = list.get(0);
+                    PrefUtil.putString(mContext, LoginActivity.USER, user.getName());
+                    PrefUtil.putString(mContext, LoginActivity.PHONE, user.getPhone());
+                    PrefUtil.putBoolean(mContext, LoginActivity.IS_ONLINE, true);
+                    LoginActivity loginActivity = (LoginActivity) mView;
+                    loginActivity.finish();
+                    Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "登录成功");
                 }else{
                     Log.d(TAG, "登录失败");
                 }
             }
         });
+    }
+
+    private void initSignUp(){
+        SMSSDK.initSDK(mContext, "19e6883036546", "af7b43a7fee9b57942003b40c665acdd");
+
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doSignUp();
+            }
+        });
+    }
+    private void doSignUp() {
+        //打开注册页面
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.setRegisterCallback(new EventHandler() {
+            public void afterEvent(int event, int result, Object data) {
+                Log.d(TAG, "register: " + "到了回调事件里");
+
+                // 解析注册结果
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    @SuppressWarnings("unchecked")
+                    HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
+                    String country = (String) phoneMap.get("country");
+                    String phone = (String) phoneMap.get("phone");
+                    Log.d(TAG, "country: " + country);
+                    Log.d(TAG, "phone: " + phone);
+                    // 提交用户信息（此方法可以不调用）
+                    //registerUser(country, phone);
+                }else{
+                    Log.d(TAG, "result: " + "失败");
+                }
+            }
+        });
+        registerPage.show(mContext);
     }
 }

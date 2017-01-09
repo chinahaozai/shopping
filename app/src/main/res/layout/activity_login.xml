@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ca343040"/>
+            android:background="#ca2f2b36"/>
         <TextView
             android:id="@+id/tv_forget_password"
             android:layout_width="wrap_content"
@@ -48,12 +48,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:layout_marginTop="80dp"
             android:background="@drawable/login_rl_bg">
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_user"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"/>
@@ -63,17 +63,17 @@
                 android:layout_height="match_parent"
                 android:hint="用 户 名"
                 android:inputType="phone"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/login_rl_bg">
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_password"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"/>
@@ -83,7 +83,7 @@
                 android:layout_height="match_parent"
                 android:hint="密 码"
                 android:inputType="textPassword"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
         <LinearLayout
@@ -104,18 +104,18 @@
                 android:text="Sign up"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"/>
+                android:textColor="@drawable/text_selector"/>
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="160dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:background="@drawable/login_btn_selector"
             android:text="Login"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"/>
     </LinearLayout>

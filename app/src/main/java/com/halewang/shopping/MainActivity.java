@@ -21,6 +21,7 @@ import com.halewang.shopping.model.bean.home.RecommendBean;
 import com.halewang.shopping.model.bean.home.RecommendModel;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.presenter.MainPresenter;
+import com.halewang.shopping.utils.PrefUtil;
 import com.halewang.shopping.view.MainView;
 import com.search.material.library.MaterialSearchView;
 
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     private ViewPager mViewPager;
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
+    private TextView mTvUser;
 
 
     @Override
@@ -58,7 +60,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         setContentView(R.layout.activity_main);
 
         ShareSDK.initSDK(this);
-        SMSSDK.initSDK(this, "19e6883036546", "af7b43a7fee9b57942003b40c665acdd");
         Bmob.initialize(this,"32e83924210f9cf2fee8cb29bf9e3ced");
 
         //testBmobInsert();
@@ -112,8 +113,8 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
-        TextView tvUser = (TextView) view.findViewById(R.id.tv_user);
-        tvUser.setOnClickListener(new View.OnClickListener() {
+        mTvUser = (TextView) view.findViewById(R.id.tv_user);
+        mTvUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
@@ -164,6 +165,12 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     protected void onResume() {
         super.onResume();
         mNavigationView.setCheckedItem(R.id.nav_seckill);
+        if(PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)){
+            //登陆后默认显示用户名，如果用户名为空则显示手机号
+            mTvUser.setText(PrefUtil.getString(this, LoginActivity.USER, LoginActivity.PHONE));
+        }else{
+            mTvUser.setText("点击登录");
+        }
     }
 
     @Override
@@ -296,4 +303,5 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         registerPage.show(MainActivity.this);
         Log.d(TAG, "register: " + "还是可以打日志");
     }
+
 }

@@ -13,5 +13,7 @@
     <color name="colorLoginBg">#daffffff</color>
     <color name="colorBtnPressed">#f96262</color>
     <color name="colorBtnNormal">#dafa6666</color>
+    <color name="colorSignUpNormal">#ffffffff</color>
+    <color name="colorSignUpPressed">#939fb4</color>
 
 </resources>
