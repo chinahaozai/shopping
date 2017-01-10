@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.halewang.shopping.LoginActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sign_layout">
+        <ImageView
+            android:id="@+id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_bg2"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ca2f2b36"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ci_avatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/default_avatar"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#ffffff"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击上传"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="5dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/login_rl_bg">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_user"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"/>
+            <EditText
+                android:id="@+id/et_sign_user"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="用 户 名"
+                android:inputType="phone"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_rl_bg">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_password"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"/>
+            <EditText
+                android:id="@+id/et_sign_password"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="密 码"
+                android:inputType="textPassword"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_rl_bg">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_password"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"/>
+            <EditText
+                android:id="@+id/et_sign_password_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="确认密码"
+                android:inputType="textPassword"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:background="@drawable/login_btn_selector"
+            android:text="提交"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.halewang.shopping.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.halewang.shopping.LoginActivity;
 import com.halewang.shopping.MainActivity;
+import com.halewang.shopping.SignUpActivity;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.utils.InternetUtil;
 import com.halewang.shopping.utils.MD5Util;
@@ -146,7 +148,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doSignUp();
+                //doSignUp();
+                mContext.startActivity(new Intent(mContext, SignUpActivity.class));
             }
         });
     }
