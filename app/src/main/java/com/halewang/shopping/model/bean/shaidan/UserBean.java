@@ -45,7 +45,7 @@ public class UserBean {
     @Override
     public String toString() {
         return "User{" +
-                "avatar='" + avatar + '\'' +
+                "AVATAR='" + avatar + '\'' +
                 ", avatar200='" + avatar200 + '\'' +
                 ", id=" + id +
                 ", nickname='" + nickname + '\'' +

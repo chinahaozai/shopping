@@ -11,6 +11,7 @@ public class User extends BmobObject{
     private String name;
     private String password;
     private String phone;
+    private String avatar;
 
     public String getName() {
         return name;
@@ -34,6 +35,14 @@ public class User extends BmobObject{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override

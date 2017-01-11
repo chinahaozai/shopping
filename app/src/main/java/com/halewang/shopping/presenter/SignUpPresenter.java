@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.halewang.shopping.LoginActivity;
 import com.halewang.shopping.R;
+import com.halewang.shopping.SignUpActivity;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.utils.InternetUtil;
 import com.halewang.shopping.utils.MD5Util;
@@ -34,6 +35,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
@@ -55,6 +57,7 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
     private EditText etPassWordConfirm;
     private Button btnCommit;
     private SelectPicPopupWindow menuWindow;
+    private boolean result = true;
 
 
     public SignUpPresenter(Context mContext) {
@@ -82,6 +85,13 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
                         Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         });
+
+        btnCommit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commit();
+            }
+        });
     }
 
     //为弹出窗口实现监听类
@@ -105,4 +115,70 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
             }
         }
     };
+
+    private void commit(){
+        switch (1) {
+            case 1:
+                if (!InternetUtil.isNetworkAvailable(mContext)) {
+                    Snackbar.make(mView.getSignLayout(), "网络连接失败，请检测网络", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    result = false;
+                    break;
+                }
+            case 2:
+                if (TextUtils.isEmpty(etUser.getText().toString())) {
+                    Snackbar.make(mView.getSignLayout(), "用户名不能为空", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    result = false;
+                    break;
+                }
+            case 3:
+                if (!TextUtils.isEmpty(etPassWord.getText().toString()) && !PatternUtil.matchPassword(etPassWord.getText().toString())) {
+                    Snackbar.make(mView.getSignLayout(), "请使用6-16位且不包含特殊字符的密码", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    result = false;
+                    break;
+                }
+            case 4:
+                if(!TextUtils.isEmpty(etPassWord.getText().toString()) && !TextUtils.isEmpty(etPassWordConfirm.getText().toString())){
+                    if(!etPassWord.getText().toString().equals(etPassWordConfirm.getText().toString())){
+                        Snackbar.make(mView.getSignLayout(), "密码不一致", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        result = false;
+                    }
+                }else{
+                    Snackbar.make(mView.getSignLayout(), "密码不能为空", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    result = false;
+                }
+                break;
+            default:
+                break;
+        }
+
+        if(result){
+            doCommit();
+        }
+    }
+
+    private void doCommit(){
+        User user = new User();
+        user.setName(etUser.getText().toString());
+        user.setPhone(SignUpActivity.phoneNum);
+        user.setPassword(MD5Util.encrypt(etPassWord.getText().toString()));
+        user.setAvatar(SignUpActivity.avatarPath);
+        user.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if(e == null){
+                    Toast.makeText(mContext,"注册成功",Toast.LENGTH_SHORT).show();
+                    SignUpActivity mActivity = (SignUpActivity) mView;
+                    mActivity.finish();
+                }else{
+                    Toast.makeText(mContext,"注册失败",Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "注册失败: "+e.getMessage());
+                }
+            }
+        });
+    }
 }

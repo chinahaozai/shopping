@@ -2,15 +2,15 @@ package com.halewang.shopping;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.halewang.shopping.presenter.SignUpPresenter;
 import com.halewang.shopping.utils.FileUtil;
@@ -18,22 +18,30 @@ import com.halewang.shopping.view.SignUpView;
 
 import java.io.File;
 
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UploadFileListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpActivity extends BaseActivity<SignUpView, SignUpPresenter> implements SignUpView {
 
+    private static final String TAG = "SignUpActivity";
+    public static final String PHONE = "phone";
+    public static final String PHONE_NUM = "phoneNum";
     private static final int REQUESTCODE_PICK = 0;		// 相册选图标记
     private static final int REQUESTCODE_TAKE = 1;		// 相机拍照标记
     private static final int REQUESTCODE_CUTTING = 2;	// 图片裁切标记
     private static final String IMAGE_FILE_NAME = "avatarImage.jpg";// 头像文件名称
     private String urlpath; // 图片本地路径
+    public static String avatarPath;  //上传后头像地址
+    public static String phoneNum;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        phoneNum = getIntent().getBundleExtra(PHONE).getString(PHONE_NUM,"");
         presenter.onStart();
-
     }
 
     @Override
@@ -155,10 +163,31 @@ public class SignUpActivity extends BaseActivity<SignUpView, SignUpPresenter> im
         if (extras != null) {
             // 取得SDCard图片路径做显示
             Bitmap photo = extras.getParcelable("data");
-            Drawable drawable = new BitmapDrawable(null, photo);
             urlpath = FileUtil.saveFile(this, "temphead.jpg", photo);
             CircleImageView circleImageView = (CircleImageView) findViewById(R.id.ci_avatar);
             circleImageView.setImageBitmap(photo);
+            final BmobFile bmobFile = new BmobFile(new File(urlpath));
+            bmobFile.uploadblock(new UploadFileListener() {
+
+                @Override
+                public void done(BmobException e) {
+                    if(e==null){
+                        Toast.makeText(SignUpActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "上传的文件地址: " + bmobFile.getFileUrl());
+                        avatarPath = bmobFile.getFileUrl();
+                    }else{
+                        Toast.makeText(SignUpActivity.this,"上传失败",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onProgress(Integer value) {
+                    // 返回的上传进度（百分比）
+                }
+            });
         }
     }
+
+
 }

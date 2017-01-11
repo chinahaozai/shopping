@@ -2,8 +2,8 @@ package com.halewang.shopping.presenter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.halewang.shopping.LoginActivity;
-import com.halewang.shopping.MainActivity;
 import com.halewang.shopping.SignUpActivity;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.utils.InternetUtil;
@@ -130,6 +129,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     User user = list.get(0);
                     PrefUtil.putString(mContext, LoginActivity.USER, user.getName());
                     PrefUtil.putString(mContext, LoginActivity.PHONE, user.getPhone());
+                    PrefUtil.putString(mContext,LoginActivity.AVATAR, user.getAvatar());
                     PrefUtil.putBoolean(mContext, LoginActivity.IS_ONLINE, true);
                     LoginActivity loginActivity = (LoginActivity) mView;
                     loginActivity.finish();
@@ -148,8 +148,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //doSignUp();
-                mContext.startActivity(new Intent(mContext, SignUpActivity.class));
+                doSignUp();
+                //mContext.startActivity(new Intent(mContext, SignUpActivity.class));
             }
         });
     }
@@ -170,6 +170,12 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     Log.d(TAG, "phone: " + phone);
                     // 提交用户信息（此方法可以不调用）
                     //registerUser(country, phone);
+                    Intent intent = new Intent(mContext, SignUpActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(SignUpActivity.PHONE_NUM, phone);
+                    intent.putExtra(SignUpActivity.PHONE, bundle);
+                    mContext.startActivity(intent);
+
                 }else{
                     Log.d(TAG, "result: " + "失败");
                 }

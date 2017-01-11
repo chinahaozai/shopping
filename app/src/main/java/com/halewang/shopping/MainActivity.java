@@ -9,12 +9,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.halewang.shopping.model.bean.heat.HeatBean;
 import com.halewang.shopping.model.bean.heat.HeatModel;
 import com.halewang.shopping.model.bean.home.RecommendBean;
@@ -37,6 +39,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
+import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Subscriber;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter>
@@ -51,6 +54,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private TextView mTvUser;
+    private CircleImageView mAvatar;
 
 
     @Override
@@ -120,6 +124,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
             }
         });
+        mAvatar = (CircleImageView) view.findViewById(R.id.iv_avatar);
 
 
     }
@@ -168,6 +173,12 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         if(PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)){
             //登陆后默认显示用户名，如果用户名为空则显示手机号
             mTvUser.setText(PrefUtil.getString(this, LoginActivity.USER, LoginActivity.PHONE));
+            if(!TextUtils.isEmpty(PrefUtil.getString(this,LoginActivity.AVATAR,""))){
+                Glide.with(this)
+                        .load(PrefUtil.getString(this,LoginActivity.AVATAR,""))
+                        .centerCrop()
+                        .into(mAvatar);
+            }
         }else{
             mTvUser.setText("点击登录");
         }

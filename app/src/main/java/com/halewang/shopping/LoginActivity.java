@@ -10,9 +10,12 @@ import com.halewang.shopping.view.LoginView;
 
 public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implements LoginView{
 
+    public final static String USER_INFO = "user_info";     //SharePreferences 名字
+
     public final static String USER = "user";
     public final static String PHONE = "phone";
-    public final static String USER_INFO = "user_info";
+    public final static String AVATAR = "avatar";
+
     public final static String IS_ONLINE = "is_online";
 
     @Override
