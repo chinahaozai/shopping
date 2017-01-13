@@ -9,6 +9,6 @@ import android.widget.ProgressBar;
 
 public interface ProductDetailView extends BaseView{
     WebView getWebView();
-    String getUrl();
+    String getShow_url();
     ProgressBar getProgressBar();
 }

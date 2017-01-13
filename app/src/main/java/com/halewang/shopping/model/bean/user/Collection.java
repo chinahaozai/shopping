@@ -9,8 +9,9 @@ import cn.bmob.v3.BmobObject;
 public class Collection extends BmobObject{
     private String phone;
     private String image_url;
-    private String title;
-    private String show_url ;
+    private String show_title;
+    private String show_url;
+    private String buy_url;
 
     public String getPhone() {
         return phone;
@@ -28,12 +29,12 @@ public class Collection extends BmobObject{
         this.image_url = image_url;
     }
 
-    public String getTitle() {
-        return title;
+    public String getShow_title() {
+        return show_title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setShow_title(String title) {
+        this.show_title = title;
     }
 
     public String getShow_url() {
@@ -42,5 +43,13 @@ public class Collection extends BmobObject{
 
     public void setShow_url(String show_url) {
         this.show_url = show_url;
+    }
+
+    public String getBuy_url() {
+        return buy_url;
+    }
+
+    public void setBuy_url(String buy_url) {
+        this.buy_url = buy_url;
     }
 }

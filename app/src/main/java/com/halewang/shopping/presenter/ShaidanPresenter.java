@@ -86,8 +86,10 @@ public class ShaidanPresenter extends BasePresenter<ShaidanView> {
                             case R.id.shaidan_item:
                                 Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                                 Bundle bundle = new Bundle();
-                                bundle.putString("url", API.OFFICIAL_URL + shaidan.getShow_url());
-                                bundle.putString("brand", "");
+                                bundle.putString(ProductDetailActivity2.SHOW_URL, API.OFFICIAL_URL + shaidan.getShow_url());
+                                bundle.putString(ProductDetailActivity2.TITLE, shaidan.getTitle());
+                                bundle.putString(ProductDetailActivity2.BUY_URL, "");
+                                bundle.putString(ProductDetailActivity2.IMAGE_URL, shaidan.getThumb_picture());
                                 intent.putExtra("detail", bundle);
                                 mContext.startActivity(intent);
                                 break;

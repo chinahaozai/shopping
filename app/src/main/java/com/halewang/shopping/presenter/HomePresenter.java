@@ -185,8 +185,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                         Bundle bundle = new Bundle();
-                        bundle.putString("url", API.OFFICIAL_URL + items.get(position).getPost_url());
-                        bundle.putString("brand", "");
+                        bundle.putString(ProductDetailActivity2.SHOW_URL, API.OFFICIAL_URL + items.get(position).getPost_url());
+                        bundle.putString(ProductDetailActivity2.TITLE, items.get(position).getPost_title());
+                        bundle.putString(ProductDetailActivity2.BUY_URL, items.get(position).getMoney_url());
+                        bundle.putString(ProductDetailActivity2.IMAGE_URL, items.get(position).getThumbnail());
                         intent.putExtra("detail", bundle);
                         mContext.startActivity(intent);
                     }

@@ -61,8 +61,10 @@ public class HotPresenter extends BasePresenter<HotView>{
                         case R.id.hot_item:
                             Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                             Bundle bundle = new Bundle();
-                            bundle.putString("url", API.OFFICIAL_URL +hot.getPost_url());
-                            bundle.putString("brand", "");
+                            bundle.putString(ProductDetailActivity2.SHOW_URL, API.OFFICIAL_URL +hot.getPost_url());
+                            bundle.putString(ProductDetailActivity2.TITLE, hot.getPost_title());
+                            bundle.putString(ProductDetailActivity2.BUY_URL, hot.getBaichuan_link());
+                            bundle.putString(ProductDetailActivity2.IMAGE_URL, hot.getThumbnail());
                             intent.putExtra("detail", bundle);
                             mContext.startActivity(intent);
                             break;

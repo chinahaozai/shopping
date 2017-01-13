@@ -7,16 +7,13 @@
             android:icon="@drawable/menu_seckill"
             android:title="今日秒杀"/>
         <item
-            android:id="@+id/nav_bargain"
-            android:icon="@drawable/menu_bargain"
-            android:title="特价商品"/>
-        <item
             android:id="@+id/nav_compare"
             android:icon="@drawable/menu_compare"
             android:title="比一比"/>
-
-
-
+        <item
+            android:id="@+id/nav_collection"
+            android:icon="@drawable/menu_collection"
+            android:title="我的收藏"/>
     </group>
 
     <item android:title="其他">

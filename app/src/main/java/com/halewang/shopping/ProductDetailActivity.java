@@ -38,7 +38,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
         ShareSDK.initSDK(this);
 
         title = getBrand();
-        url = getUrl();
+        url = getShow_url();
         setupToolbar();
         initView();
         initRefreshLayout();
@@ -138,8 +138,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailView,Produc
         return mProgress;
     }
 
-    @Override
-    public String getUrl() {
+    public String getShow_url() {
         Intent intent = getIntent();
         return intent.getBundleExtra("detail").getString("url");
     }

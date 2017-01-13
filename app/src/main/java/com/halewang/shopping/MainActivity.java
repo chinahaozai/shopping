@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         setContentView(R.layout.activity_main);
 
         ShareSDK.initSDK(this);
-        Bmob.initialize(this,"32e83924210f9cf2fee8cb29bf9e3ced");
+        Bmob.initialize(this, "32e83924210f9cf2fee8cb29bf9e3ced");
 
         //testBmobInsert();
         //testBmobQuery();
@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
     }
 
-    private void testBmobInsert(){
+    private void testBmobInsert() {
         User user = new User();
         user.setName("王浩");
         user.setPhone("13363738372");
@@ -85,23 +85,23 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         user.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
-                if(e==null){
-                    Log.d(TAG, "添加数据成功，返回objectId为："+s);
-                }else{
+                if (e == null) {
+                    Log.d(TAG, "添加数据成功，返回objectId为：" + s);
+                } else {
                     Log.d(TAG, "添加错误: " + e.getMessage());
                 }
             }
         });
     }
 
-    private void testBmobQuery(){
+    private void testBmobQuery() {
         BmobQuery<User> bmobQuery = new BmobQuery<>();
         bmobQuery.getObject("54712df8e0", new QueryListener<User>() {
             @Override
             public void done(User user, BmobException e) {
-                if(e == null){
+                if (e == null) {
                     Log.d(TAG, "查询成功: " + user.toString());
-                }else{
+                } else {
                     Log.d(TAG, "查询失败: " + e.getMessage());
                 }
             }
@@ -121,10 +121,24 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         mTvUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                if (PrefUtil.getBoolean(MainActivity.this, LoginActivity.IS_ONLINE, false)) {
+                    startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
             }
         });
         mAvatar = (CircleImageView) view.findViewById(R.id.iv_avatar);
+        mAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PrefUtil.getBoolean(MainActivity.this, LoginActivity.IS_ONLINE, false)) {
+                    startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            }
+        });
 
 
     }
@@ -170,16 +184,16 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     protected void onResume() {
         super.onResume();
         mNavigationView.setCheckedItem(R.id.nav_seckill);
-        if(PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)){
+        if (PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)) {
             //登陆后默认显示用户名，如果用户名为空则显示手机号
             mTvUser.setText(PrefUtil.getString(this, LoginActivity.USER, LoginActivity.PHONE));
-            if(!TextUtils.isEmpty(PrefUtil.getString(this,LoginActivity.AVATAR,""))){
+            if (!TextUtils.isEmpty(PrefUtil.getString(this, LoginActivity.AVATAR, ""))) {
                 Glide.with(this)
-                        .load(PrefUtil.getString(this,LoginActivity.AVATAR,""))
+                        .load(PrefUtil.getString(this, LoginActivity.AVATAR, ""))
                         .centerCrop()
                         .into(mAvatar);
             }
-        }else{
+        } else {
             mTvUser.setText("点击登录");
         }
     }
@@ -213,8 +227,12 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         if (id == R.id.nav_seckill) {
             // Handle the camera action
-        } else if (id == R.id.nav_bargain) {
-
+        } else if (id == R.id.nav_collection) {
+            if (PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)) {
+                startActivity(new Intent(this, CollectionActivity.class));
+            } else {
+                startActivity(new Intent(this, LoginActivity.class));
+            }
         } else if (id == R.id.nav_compare) {
             startActivity(new Intent(MainActivity.this, CompareActivity.class));
         } else if (id == R.id.nav_joy) {
@@ -306,7 +324,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
                     Log.d(TAG, "phone: " + phone);
                     // 提交用户信息（此方法可以不调用）
                     //registerUser(country, phone);
-                }else{
+                } else {
                     Log.d(TAG, "result: " + "失败");
                 }
             }

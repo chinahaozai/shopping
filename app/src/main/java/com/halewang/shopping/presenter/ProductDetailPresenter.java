@@ -1,16 +1,13 @@
 package com.halewang.shopping.presenter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.halewang.shopping.ProductDetailActivity;
 import com.halewang.shopping.view.ProductDetailView;
 
 import java.io.IOException;
@@ -41,7 +38,7 @@ public class ProductDetailPresenter extends BasePresenter<ProductDetailView>{
         mWebView = mView.getWebView();
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setBlockNetworkImage(false);
-        mWebView.loadUrl(mView.getUrl());
+        mWebView.loadUrl(mView.getShow_url());
         mWebView.setWebViewClient(new MyWebviewClient());
         mWebView.setWebChromeClient(new MyChromeClient());
     }

@@ -101,11 +101,20 @@
             android:name=".TablaoutTestActivity"
             android:theme="@style/JoyTheme">
         </activity>
-        <activity android:name=".LoginActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".SignUpActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".UserInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".CollectionActivity"
+                  android:theme="@style/JoyTheme">
         </activity>
     </application>
 

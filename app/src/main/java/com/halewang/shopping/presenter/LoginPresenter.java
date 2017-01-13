@@ -105,7 +105,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                         break;
                 }
 
-                if(result){
+                if (result) {
                     doLogin();
                 }
 
@@ -116,33 +116,33 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     /**
      * 真正执行登录操作
      */
-    private void doLogin(){
+    private void doLogin() {
         Log.d(TAG, "doLogin: " + MD5Util.encrypt(etPassWord.getText().toString()));
-        System.out.println("加密后的密码"+MD5Util.encrypt(etPassWord.getText().toString()));
+        System.out.println("加密后的密码" + MD5Util.encrypt(etPassWord.getText().toString()));
         BmobQuery<User> userQuery = new BmobQuery<>();
         userQuery.addWhereEqualTo("phone", etUser.getText().toString());
         userQuery.addWhereEqualTo("password", MD5Util.encrypt(etPassWord.getText().toString()));
         userQuery.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if(list.size() > 0){
+                if (list.size() > 0) {
                     User user = list.get(0);
                     PrefUtil.putString(mContext, LoginActivity.USER, user.getName());
                     PrefUtil.putString(mContext, LoginActivity.PHONE, user.getPhone());
-                    PrefUtil.putString(mContext,LoginActivity.AVATAR, user.getAvatar());
+                    PrefUtil.putString(mContext, LoginActivity.AVATAR, user.getAvatar());
                     PrefUtil.putBoolean(mContext, LoginActivity.IS_ONLINE, true);
                     LoginActivity loginActivity = (LoginActivity) mView;
                     loginActivity.finish();
-                    Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "登录成功");
-                }else{
+                } else {
                     Log.d(TAG, "登录失败");
                 }
             }
         });
     }
 
-    private void initSignUp(){
+    private void initSignUp() {
         SMSSDK.initSDK(mContext, "19e6883036546", "af7b43a7fee9b57942003b40c665acdd");
 
         tvSignUp.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +153,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             }
         });
     }
+
     private void doSignUp() {
         //打开注册页面
         RegisterPage registerPage = new RegisterPage();
@@ -176,7 +177,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     intent.putExtra(SignUpActivity.PHONE, bundle);
                     mContext.startActivity(intent);
 
-                }else{
+                } else {
                     Log.d(TAG, "result: " + "失败");
                 }
             }
