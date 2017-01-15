@@ -30,7 +30,7 @@
                 android:textSize="18sp"
                 android:maxLines="3"/>
             <Button
-                android:id="@+id/iv_delete"
+                android:id="@+id/btn_delete"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:padding="5dp"

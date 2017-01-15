@@ -70,7 +70,8 @@ public class CollectionActivity extends AppCompatActivity {
             public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 Collection collection = (Collection)adapter.getItem(position);
                 switch (view.getId()){
-                    case R.id.collection_item:
+                    case R.id.tv_title:
+                    case R.id.image_collection:
                         Intent intent = new Intent(CollectionActivity.this, ProductDetailActivity2.class);
                         Bundle bundle = new Bundle();
                         bundle.putString(ProductDetailActivity2.SHOW_URL, collection.getShow_url());
@@ -80,7 +81,7 @@ public class CollectionActivity extends AppCompatActivity {
                         intent.putExtra("detail", bundle);
                         startActivity(intent);
                         break;
-                    case R.id.iv_delete:
+                    case R.id.btn_delete:
                         Toast.makeText(CollectionActivity.this,"删除收藏",Toast.LENGTH_SHORT).show();
                         break;
                     default:

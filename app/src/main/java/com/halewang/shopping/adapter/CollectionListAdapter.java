@@ -6,7 +6,6 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.halewang.shopping.R;
-import com.halewang.shopping.model.bean.hot.Hot;
 import com.halewang.shopping.model.bean.user.Collection;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  * Created by halewang on 2016/12/26.
  */
 
-public class CollectionListAdapter extends BaseQuickAdapter<Collection, BaseViewHolder>{
+public class CollectionListAdapter extends BaseQuickAdapter<Collection, BaseViewHolder> {
 
     public CollectionListAdapter(List<Collection> datas){
         super(R.layout.item_collection,datas);
@@ -24,8 +23,9 @@ public class CollectionListAdapter extends BaseQuickAdapter<Collection, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, Collection item) {
-        helper.addOnClickListener(R.id.collection_item)
-                .addOnClickListener(R.id.iv_delete)
+        helper.addOnClickListener(R.id.image_collection)
+                .addOnClickListener(R.id.btn_delete)
+                .addOnClickListener(R.id.tv_title)
                 .setText(R.id.tv_title, item.getShow_title());
 
         String url = item.getImage_url().replace("https","http");
@@ -35,4 +35,5 @@ public class CollectionListAdapter extends BaseQuickAdapter<Collection, BaseView
                 .centerCrop()
                 .into((ImageView) helper.getView(R.id.image_collection));
     }
+
 }

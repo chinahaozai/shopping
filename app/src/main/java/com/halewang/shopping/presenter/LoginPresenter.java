@@ -106,6 +106,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 }
 
                 if (result) {
+                    mView.showLoading();
                     doLogin();
                 }
 
@@ -138,6 +139,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 } else {
                     Log.d(TAG, "登录失败");
                 }
+                mView.hideLoading(true);
             }
         });
     }

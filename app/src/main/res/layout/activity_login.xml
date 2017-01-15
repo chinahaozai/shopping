@@ -120,4 +120,6 @@
             android:layout_marginTop="30dp"/>
     </LinearLayout>
 
+    <include layout="@layout/wait_login"/>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.halewang.shopping;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -58,12 +59,12 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
 
     @Override
     public void showLoading() {
-
+        findViewById(R.id.rl_wait_login).setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading(boolean isFirstLoad) {
-
+        findViewById(R.id.rl_wait_login).setVisibility(View.GONE);
     }
 
     @Override
