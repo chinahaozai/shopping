@@ -56,7 +56,6 @@ public class CompareActivity extends BaseActivity<CompareView,ComparePresenter> 
             presenter.getCompareList(getKeyword());
         }
         presenter.onStart();
-        long currentTimeMillis = System.currentTimeMillis();
     }
 
     private String getKeyword(){

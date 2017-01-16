@@ -2,10 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_seckill"
-            android:icon="@drawable/menu_seckill"
-            android:title="今日秒杀"/>
+
         <item
             android:id="@+id/nav_compare"
             android:icon="@drawable/menu_compare"
@@ -26,10 +23,14 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="分享"/>
-            <item
+            <!--<item
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="设置"/>
+                android:title="设置"/>-->
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/menu_about"
+                android:title="关于软件"/>
             <item
                 android:id="@+id/nav_quit"
                 android:icon="@drawable/menu_quit"

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.halewang.shopping.model.bean.heat.HeatBean;
@@ -23,6 +24,7 @@ import com.halewang.shopping.model.bean.home.RecommendBean;
 import com.halewang.shopping.model.bean.home.RecommendModel;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.presenter.MainPresenter;
+import com.halewang.shopping.utils.InternetUtil;
 import com.halewang.shopping.utils.PrefUtil;
 import com.halewang.shopping.view.MainView;
 import com.search.material.library.MaterialSearchView;
@@ -62,7 +64,10 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        if(!InternetUtil.isNetworkAvailable(this)){
+            Toast.makeText(this,"这都什么时代了，你居然还没连上网",Toast.LENGTH_LONG).show();
+            finish();
+        }
         ShareSDK.initSDK(this);
         Bmob.initialize(this, "32e83924210f9cf2fee8cb29bf9e3ced");
 
@@ -183,7 +188,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
     @Override
     protected void onResume() {
         super.onResume();
-        mNavigationView.setCheckedItem(R.id.nav_seckill);
+
         if (PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)) {
             //登陆后默认显示用户名，如果用户名为空则显示手机号
             mTvUser.setText(PrefUtil.getString(this, LoginActivity.USER, LoginActivity.PHONE));
@@ -225,8 +230,8 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_seckill) {
-            // Handle the camera action
+        if (id == R.id.nav_about) {
+            startActivity(new Intent(this,AboutActivity.class));
         } else if (id == R.id.nav_collection) {
             if (PrefUtil.getBoolean(this, LoginActivity.IS_ONLINE, false)) {
                 startActivity(new Intent(this, CollectionActivity.class));
@@ -234,17 +239,19 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
                 startActivity(new Intent(this, LoginActivity.class));
             }
         } else if (id == R.id.nav_compare) {
-            startActivity(new Intent(MainActivity.this, CompareActivity.class));
+            if(Debug.IS_DEBUG) {
+                startActivity(new Intent(MainActivity.this, CompareActivity.class));
+            }else{
+                mSearchView.showSearch();
+            }
         } else if (id == R.id.nav_joy) {
             startActivity(new Intent(MainActivity.this, JoyActivity.class));
 
         } else if (id == R.id.nav_share) {
             showShareView();
 
-        } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_quit) {
-            startActivity(new Intent(MainActivity.this, TablaoutTestActivity.class));
+            finish();
         }
 
         mDrawer.closeDrawer(GravityCompat.START);
@@ -305,32 +312,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         // 启动分享GUI
         oks.show(this);
-    }
-
-    private void register() {
-        //打开注册页面
-        RegisterPage registerPage = new RegisterPage();
-        registerPage.setRegisterCallback(new EventHandler() {
-            public void afterEvent(int event, int result, Object data) {
-                Log.d(TAG, "register: " + "到了回调事件里");
-
-                // 解析注册结果
-                if (result == SMSSDK.RESULT_COMPLETE) {
-                    @SuppressWarnings("unchecked")
-                    HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
-                    String country = (String) phoneMap.get("country");
-                    String phone = (String) phoneMap.get("phone");
-                    Log.d(TAG, "country: " + country);
-                    Log.d(TAG, "phone: " + phone);
-                    // 提交用户信息（此方法可以不调用）
-                    //registerUser(country, phone);
-                } else {
-                    Log.d(TAG, "result: " + "失败");
-                }
-            }
-        });
-        registerPage.show(MainActivity.this);
-        Log.d(TAG, "register: " + "还是可以打日志");
     }
 
 }

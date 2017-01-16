@@ -132,7 +132,7 @@
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
         RedirectUrl="http://mob.com"
-        Enable="true" />
+        Enable="false" />
 
     <Twitter
         Id="9"
@@ -140,7 +140,7 @@
         ConsumerKey="LRBM0H75rWrU9gNHvlEAA2aOy"
         ConsumerSecret="gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
         CallbackUrl="http://mob.com"
-        Enable="true" />
+        Enable="false" />
     
     <Renren
         Id="10"
@@ -148,7 +148,7 @@
         AppId="226427"
         ApiKey="fc5b8aed373c4c27a05b712acba0f8c3"
         SecretKey="f29df781abdd4f49beca5a2194676ca4"
-        Enable="true" />
+        Enable="false" />
     
     <KaiXin
         Id="11"
@@ -156,7 +156,7 @@
         AppKey="358443394194887cee81ff5890870c7c"
         AppSecret="da32179d859c016169f66d90b6db2a23"
         RedirectUri="http://www.sharesdk.cn"
-        Enable="true" />
+        Enable="false" />
     
     <Email
         Id="12" 
@@ -166,7 +166,7 @@
     <ShortMessage
         Id="13" 
         SortId="13"
-        Enable="true" />
+        Enable="false" />
     
     <Douban
         Id="16"
@@ -174,7 +174,7 @@
         ApiKey="031a96a3aa8b28af094fc3eaffa17a0d"
         Secret="2e675e730571b75d"
         RedirectUri="http://mob.com"
-        Enable="true" />
+        Enable="false" />
     
     <YouDao
         Id="17"
@@ -183,7 +183,7 @@
         ConsumerKey="dcde25dca105bcc36884ed4534dab940"
         ConsumerSecret="d98217b4020e7f1874263795f44838fe"
         RedirectUri="http://www.sharesdk.cn/"
-        Enable="true" />
+        Enable="false" />
         
     <!-- 
     	在中国大陆，印象笔记有两个服务器，一个是沙箱（sandbox），一个是生产服务器（china）。
@@ -202,7 +202,7 @@
     	ConsumerKey="sharesdk-7807"
 		ConsumerSecret="d05bf86993836004"
 		ShareByAppClient="true"
-		Enable="true" />
+		Enable="false" />
     
     <LinkedIn
     	Id="20"
@@ -210,7 +210,7 @@
         ApiKey="ejo5ibkye3vo"
         SecretKey="cC7B2jpxITqPLZ5M" 
         RedirectUrl="http://sharesdk.cn"
-        Enable="true" />
+        Enable="false" />
     
      <GooglePlus
     	Id="21"

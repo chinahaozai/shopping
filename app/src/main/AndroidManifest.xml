@@ -111,10 +111,14 @@
         </activity>
         <activity
             android:name=".UserInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/JoyTheme">
         </activity>
-        <activity android:name=".CollectionActivity"
-                  android:theme="@style/JoyTheme">
+        <activity
+            android:name=".CollectionActivity"
+            android:theme="@style/JoyTheme">
+        </activity>
+        <activity android:name=".AboutActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

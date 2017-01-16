@@ -8,7 +8,7 @@ import com.halewang.shopping.model.bean.compare.ProductBean;
  */
 
 public class Debug {
-    public static final boolean IS_DEBUG = true;
+    public static final boolean IS_DEBUG = false;
 
     public static ProductBean getLocalData(){
         Gson gson = new Gson();
