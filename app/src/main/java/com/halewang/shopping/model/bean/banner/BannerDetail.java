@@ -9,6 +9,7 @@ public class BannerDetail {
     private String pic;
     private String post_title;
     private String post_url;
+    private String post;
     private String slide_thumb;
     private String time;
 
@@ -58,6 +59,14 @@ public class BannerDetail {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
     }
 
     @Override

@@ -56,7 +56,7 @@ public class ProductDetailActivity2 extends BaseActivity<ProductDetailView,Produ
 
     void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("商品详情");
+        toolbar.setTitle(R.string.product_detail);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

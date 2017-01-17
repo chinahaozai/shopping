@@ -1,5 +1,6 @@
 package com.halewang.shopping.adapter;
 
+import android.text.Html;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -26,7 +27,7 @@ public class CollectionListAdapter extends BaseQuickAdapter<Collection, BaseView
         helper.addOnClickListener(R.id.image_collection)
                 .addOnClickListener(R.id.btn_delete)
                 .addOnClickListener(R.id.tv_title)
-                .setText(R.id.tv_title, item.getShow_title());
+                .setText(R.id.tv_title, Html.fromHtml(item.getShow_title()));
 
         String url = item.getImage_url().replace("https","http");
         //System.out.println("处理后的地址----->"+url);

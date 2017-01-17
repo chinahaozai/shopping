@@ -9,6 +9,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -98,8 +101,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
             public void OnBannerClick(int position) {
                 Intent intent = new Intent(mContext, ProductDetailActivity2.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("url", dealUrls.get(position - 1));
-                bundle.putString("brand", "");
+                bundle.putString(ProductDetailActivity2.SHOW_URL, dealUrls.get(position - 1));
+                bundle.putString(ProductDetailActivity2.TITLE, dealTitles.get(position - 1));
+                bundle.putString(ProductDetailActivity2.BUY_URL, "");
+                bundle.putString(ProductDetailActivity2.IMAGE_URL, imageUrls.get(position - 1));
                 intent.putExtra("detail", bundle);
                 mContext.startActivity(intent);
             }
@@ -126,7 +131,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 for (BannerDetail detail : items) {
                     dealTitles.add(detail.getPost_title());
                     imageUrls.add(detail.getSlide_thumb());
-                    dealUrls.add(API.OFFICIAL_URL + detail.getPost_url());
+                    if(!TextUtils.isEmpty(detail.getPost_url())) {
+                        dealUrls.add(API.OFFICIAL_URL + detail.getPost_url());
+                    }else{
+                        String html = Html.fromHtml(detail.getPost()).toString();
+                        String post_url = html.substring(16,html.length() - 3);
+                        dealUrls.add(post_url);
+                    }
+
                 }
 
                 mBanner.setImages(imageUrls);

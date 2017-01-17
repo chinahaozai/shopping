@@ -69,6 +69,12 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         tvSignUp = mView.getSignUp();
         tvForgetPassword = mView.getForgetPassword();
         tvForgetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tvForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"该功能暂停使用",Toast.LENGTH_SHORT).show();
+            }
+        });
         btnLogin = mView.getLogin();
     }
 

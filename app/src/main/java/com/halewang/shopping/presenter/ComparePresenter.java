@@ -11,7 +11,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.halewang.shopping.Debug;
 import com.halewang.shopping.ProductDetailActivity;
+import com.halewang.shopping.ProductDetailActivity2;
 import com.halewang.shopping.adapter.CompareListAdapter;
+import com.halewang.shopping.global.API;
 import com.halewang.shopping.model.bean.compare.CompareModel;
 import com.halewang.shopping.model.bean.compare.ProductBean;
 import com.halewang.shopping.model.bean.compare.ProductDetail;
@@ -60,14 +62,15 @@ public class ComparePresenter extends BasePresenter<CompareView> {
                         if(InternetUtil.isNetworkAvailable(mContext)) {
                             Intent intent = new Intent(mContext, ProductDetailActivity.class);
                             Bundle bundle = new Bundle();
-                            bundle.putString("url", list.get(position).getSpurl());
-                            bundle.putString("brand", list.get(position).getBrandName());
+                            bundle.putString(ProductDetailActivity2.SHOW_URL, list.get(position).getSpurl());
+                            bundle.putString(ProductDetailActivity2.TITLE, list.get(position).getSpname());
+                            bundle.putString(ProductDetailActivity2.BUY_URL, list.get(position).getSpurl());
+                            bundle.putString(ProductDetailActivity2.IMAGE_URL, list.get(position).getSppic());
                             intent.putExtra("detail", bundle);
                             mContext.startActivity(intent);
                         }else{
                             Snackbar.make(view, "网络连接失败，请检测手机网络连接", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
-                            //Toast.makeText(mContext,"网络连接失败，请检测手机网络连接",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

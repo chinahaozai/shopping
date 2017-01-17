@@ -200,6 +200,10 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
             }
         } else {
             mTvUser.setText("点击登录");
+            Glide.with(this)
+                    .load(R.drawable.default_avatar)
+                    .centerCrop()
+                    .into(mAvatar);
         }
     }
 
