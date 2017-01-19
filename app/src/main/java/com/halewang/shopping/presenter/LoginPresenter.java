@@ -137,6 +137,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     PrefUtil.putString(mContext, LoginActivity.USER, user.getName());
                     PrefUtil.putString(mContext, LoginActivity.PHONE, user.getPhone());
                     PrefUtil.putString(mContext, LoginActivity.AVATAR, user.getAvatar());
+                    PrefUtil.putString(mContext, LoginActivity.OBJECT_ID, user.getObjectId());
                     PrefUtil.putBoolean(mContext, LoginActivity.IS_ONLINE, true);
                     LoginActivity loginActivity = (LoginActivity) mView;
                     loginActivity.finish();

@@ -16,6 +16,7 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
     public final static String USER = "user";
     public final static String PHONE = "phone";
     public final static String AVATAR = "avatar";
+    public final static String OBJECT_ID = "object_id";
 
     public final static String IS_ONLINE = "is_online";
 

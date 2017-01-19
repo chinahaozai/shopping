@@ -1,6 +1,8 @@
 package com.halewang.shopping;
 
 import android.app.AlertDialog;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +24,22 @@ public class AboutActivity extends AppCompatActivity {
                 showStatement();
             }
         });
+        TextView tvVersion = (TextView) findViewById(R.id.tv_version);
+        tvVersion.setText("当前版本 V" + getVersionName());
+    }
+
+    private String getVersionName(){
+        // 获取packagemanager的实例
+        PackageManager packageManager = getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        PackageInfo packInfo = null;
+        try {
+            packInfo = packageManager.getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String version = packInfo.versionName;
+        return version;
     }
 
     private void initToolBar() {
