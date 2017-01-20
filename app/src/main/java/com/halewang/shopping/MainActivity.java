@@ -161,6 +161,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
     }
 
     private void initSearchView() {
@@ -254,7 +255,9 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         } else if (id == R.id.nav_share) {
             showShareView();
 
-        } else if (id == R.id.nav_quit) {
+        } else if (id == R.id.nav_check_update) {
+            showCheckView();
+        }else if (id == R.id.nav_quit) {
             finish();
         }
 
@@ -298,24 +301,28 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         oks.disableSSOWhenAuthorize();
 
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
-        oks.setTitle("比一比");
+        oks.setTitle(getString(R.string.app_name));
         // titleUrl是标题的网络链接，QQ和QQ空间等使用
-        oks.setTitleUrl("http://www.baidu.com");
+        oks.setTitleUrl("http://shouji.baidu.com/software/10827888.html");
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("这个应用非常方便，终于不用挨个网站逛了，快来下载吧");
+        oks.setText("这个应用非常方便，终于不用挨个电商网站逛了，快来下载吧");
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://www.baidu.com");
+        oks.setUrl("http://shouji.baidu.com/software/10827888.html");
         // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-        oks.setComment("这个应用非常方便，终于不用挨个网站逛了，快来下载吧");
+        oks.setComment("这个应用非常方便，终于不用挨个电商网站逛了，快来下载吧");
         // site是分享此内容的网站名称，仅在QQ空间使用
         oks.setSite(getString(R.string.app_name));
         // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        oks.setSiteUrl("http://www.baidu.com");
+        oks.setSiteUrl("http://shouji.baidu.com/software/10827888.html");
 
         // 启动分享GUI
         oks.show(this);
+    }
+
+    private void showCheckView(){
+
     }
 
 }

@@ -144,7 +144,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "登录成功");
                 } else {
-                    Log.d(TAG, "登录失败");
+                    Toast.makeText(mContext, "登录失败，用户名或密码错误", Toast.LENGTH_SHORT).show();
                 }
                 mView.hideLoading(true);
             }

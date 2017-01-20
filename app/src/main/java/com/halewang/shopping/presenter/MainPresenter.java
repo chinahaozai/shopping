@@ -25,15 +25,10 @@ public class MainPresenter extends BasePresenter<MainView>{
     private static final String TAG = "MainPresenter";
 
     private Context mContext;
-    private List<String> dealTitles;
-    private List<String> imageUrls;
-    private List<String> dealUrls;
     private List<String> mTabs;
     private List<Fragment> mFragments;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-
-    //private Banner mBanner;
 
     public MainPresenter(Context context){
         mContext = context;
@@ -42,7 +37,6 @@ public class MainPresenter extends BasePresenter<MainView>{
     @Override
     public void onStart() {
         super.onStart();
-        //initBannerData2();
         initTabLayout();
         initViewPager();
     }
