@@ -18,18 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.halewang.shopping.model.bean.heat.HeatBean;
-import com.halewang.shopping.model.bean.heat.HeatModel;
-import com.halewang.shopping.model.bean.home.RecommendBean;
-import com.halewang.shopping.model.bean.home.RecommendModel;
 import com.halewang.shopping.model.bean.user.User;
 import com.halewang.shopping.presenter.MainPresenter;
 import com.halewang.shopping.utils.InternetUtil;
 import com.halewang.shopping.utils.PrefUtil;
 import com.halewang.shopping.view.MainView;
 import com.search.material.library.MaterialSearchView;
-
-import java.util.HashMap;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
@@ -38,11 +32,7 @@ import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
-import cn.smssdk.gui.RegisterPage;
 import de.hdodenhof.circleimageview.CircleImageView;
-import rx.Subscriber;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter>
         implements MainView, NavigationView.OnNavigationItemSelectedListener {
@@ -71,8 +61,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         ShareSDK.initSDK(this);
         Bmob.initialize(this, "32e83924210f9cf2fee8cb29bf9e3ced");
 
-        //testBmobInsert();
-        //testBmobQuery();
         initView();
         initToolbar();
         initMenu();
@@ -81,38 +69,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter>
         presenter.onStart();
 
     }
-
-    private void testBmobInsert() {
-        User user = new User();
-        user.setName("王浩");
-        user.setPhone("13363738372");
-        user.setPassword("diedigmndjk");
-        user.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                if (e == null) {
-                    Log.d(TAG, "添加数据成功，返回objectId为：" + s);
-                } else {
-                    Log.d(TAG, "添加错误: " + e.getMessage());
-                }
-            }
-        });
-    }
-
-    private void testBmobQuery() {
-        BmobQuery<User> bmobQuery = new BmobQuery<>();
-        bmobQuery.getObject("54712df8e0", new QueryListener<User>() {
-            @Override
-            public void done(User user, BmobException e) {
-                if (e == null) {
-                    Log.d(TAG, "查询成功: " + user.toString());
-                } else {
-                    Log.d(TAG, "查询失败: " + e.getMessage());
-                }
-            }
-        });
-    }
-
 
     private void initView() {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
